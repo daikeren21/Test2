@@ -2,166 +2,198 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1a3d2b">
 <title>La Fleur Transient Inn — Book Your Stay</title>
-<meta name="description" content="Book your stay easily. No account needed — instant booking reference.">
-<meta property="og:title" content="La Fleur Transient Inn">
-<meta property="og:description" content="Boutique transient inn. No login needed. Book instantly.">
+<meta name="description" content="Book your stay instantly. No account needed.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ── Reset & Base ──────────────────────────────── */
+/* ─── Reset ─────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'Outfit',sans-serif;background:#f9f5ef;color:#1c1810;-webkit-font-smoothing:antialiased;min-height:100vh;}
-button{font-family:'Outfit',sans-serif;cursor:pointer;}
-input,select,textarea{font-family:'Outfit',sans-serif;}
-img{max-width:100%;display:block;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{font-family:'Outfit',sans-serif;background:#f9f5ef;color:#1c1810;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden;}
+button,input,select,textarea{font-family:'Outfit',sans-serif;}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent;}
+a{color:inherit;}
 
-/* ── CSS Variables ─────────────────────────────── */
+/* ─── Variables ─────────────────────────────── */
 :root{
-  --forest:#1a3d2b; --green:#2d6a4f; --sage:#52876a; --mint:#b0d4be; --mint-pale:#e8f4ec;
-  --gold:#c8913c; --gold-pale:#f5e8cc; --amber:#e6a018;
-  --ivory:#f9f5ef; --linen:#ede5d8; --warm:#dfd5c8; --stone:#9a8c7e;
-  --bark:#6a4c36; --ink:#1c1810; --mist:#7a6e62; --white:#ffffff;
-  --red:#b83232; --red-pale:#fde8e8; --blue:#1d4ed8; --blue-pale:#dbeafe;
-  --yellow-pale:#fefce8; --yellow-border:#fde68a;
-  --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:999px;
-  --shadow-sm:0 1px 4px rgba(28,24,16,.07);
-  --shadow-md:0 4px 16px rgba(28,24,16,.11);
-  --shadow-lg:0 8px 32px rgba(28,24,16,.15);
-  --shadow-xl:0 20px 60px rgba(28,24,16,.22);
-  --transition:.2s cubic-bezier(.4,0,.2,1);
+  --forest:#1a3d2b; --green:#2d6a4f; --sage:#52876a;
+  --mint:#b0d4be; --mint-pale:#e8f4ec;
+  --gold:#c8913c; --amber:#e6a018;
+  --ivory:#f9f5ef; --linen:#ede5d8; --warm:#dfd5c8;
+  --stone:#9a8c7e; --bark:#6a4c36; --ink:#1c1810; --mist:#7a6e62; --white:#fff;
+  --red:#b83232; --red-pale:#fde8e8;
+  --blue-pale:#dbeafe; --yellow-pale:#fefce8; --yellow-b:#fde68a;
+  --r4:4px; --r8:8px; --r12:12px; --r16:16px; --r20:20px; --rpill:999px;
+  --sh1:0 1px 4px rgba(28,24,16,.08);
+  --sh2:0 4px 18px rgba(28,24,16,.12);
+  --sh3:0 10px 36px rgba(28,24,16,.16);
+  --shxl:0 20px 60px rgba(28,24,16,.22);
+  --ease:.2s cubic-bezier(.4,0,.2,1);
 }
 
-/* ── Typography ────────────────────────────────── */
+/* ─── Typography ─────────────────────────────── */
 .serif{font-family:'Cormorant Garamond',Georgia,serif;}
-.label-xs{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--bark);}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--bark);display:block;margin-bottom:5px;}
 
-/* ── Buttons ───────────────────────────────────── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:none;border-radius:var(--radius-md);font-size:14px;font-weight:600;transition:all var(--transition);white-space:nowrap;line-height:1;}
-.btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important;}
-.btn-lg{padding:14px 28px;font-size:15px;border-radius:var(--radius-lg);}
-.btn-md{padding:11px 20px;}
-.btn-sm{padding:8px 14px;font-size:13px;border-radius:var(--radius-sm);}
-.btn-xs{padding:5px 10px;font-size:12px;border-radius:var(--radius-sm);}
-.btn-forest{background:var(--forest);color:#fff;} .btn-forest:hover:not(:disabled){background:#122d1f;box-shadow:0 4px 16px rgba(26,61,43,.35);transform:translateY(-1px);}
-.btn-gold{background:var(--gold);color:#fff;}   .btn-gold:hover:not(:disabled){background:#b07e30;box-shadow:0 4px 16px rgba(200,145,60,.35);transform:translateY(-1px);}
-.btn-sage{background:var(--sage);color:#fff;}   .btn-sage:hover:not(:disabled){background:#3d6b52;transform:translateY(-1px);}
-.btn-red{background:var(--red);color:#fff;}     .btn-red:hover:not(:disabled){background:#9e2a2a;transform:translateY(-1px);}
-.btn-outline{background:transparent;border:1.5px solid var(--forest);color:var(--forest);} .btn-outline:hover:not(:disabled){background:var(--forest);color:#fff;}
-.btn-ghost{background:transparent;border:1.5px solid var(--warm);color:var(--mist);} .btn-ghost:hover:not(:disabled){background:var(--linen);color:var(--ink);border-color:var(--stone);}
-.btn-white-ghost{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.75);font-size:12px;padding:7px 14px;border-radius:var(--radius-sm);}
-.btn-white-ghost:hover{background:rgba(255,255,255,.2);color:#fff;}
+/* ─── Buttons ────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:none;border-radius:var(--r8);font-size:15px;font-weight:600;transition:all var(--ease);white-space:nowrap;line-height:1;min-height:44px;padding:0 20px;-webkit-tap-highlight-color:transparent;}
+.btn:active{transform:scale(.97);}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+.btn-lg{min-height:50px;font-size:16px;padding:0 28px;border-radius:var(--r12);}
+.btn-sm{min-height:36px;font-size:13px;padding:0 14px;border-radius:var(--r8);}
+.btn-xs{min-height:30px;font-size:12px;padding:0 10px;border-radius:var(--r4);}
+.btn-forest{background:var(--forest);color:#fff;} .btn-forest:active{background:#122d1f;}
+.btn-gold  {background:var(--gold);color:#fff;}   .btn-gold:active{background:#b07e30;}
+.btn-sage  {background:var(--sage);color:#fff;}   .btn-sage:active{background:#3d6b52;}
+.btn-red   {background:var(--red);color:#fff;}    .btn-red:active{background:#9e2a2a;}
+.btn-outline{background:transparent;border:1.5px solid var(--forest);color:var(--forest);}
+.btn-outline:active{background:var(--forest);color:#fff;}
+.btn-ghost {background:transparent;border:1.5px solid var(--warm);color:var(--mist);}
+.btn-ghost:active{background:var(--linen);}
+.btn-wg{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.85);font-size:13px;min-height:36px;padding:0 14px;border-radius:var(--r8);}
+.btn-wg:active{background:rgba(255,255,255,.25);}
 
-/* ── Form Elements ─────────────────────────────── */
-.field{display:flex;flex-direction:column;gap:5px;}
-.inp{width:100%;padding:11px 14px;border:1.5px solid var(--warm);border-radius:var(--radius-md);font-size:14px;color:var(--ink);background:var(--white);outline:none;transition:border-color var(--transition),box-shadow var(--transition);}
-.inp:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(45,106,79,.1);}
+/* ─── Inputs — 16px prevents iOS zoom ─────── */
+.inp{width:100%;padding:13px 14px;border:1.5px solid var(--warm);border-radius:var(--r8);font-size:16px;color:var(--ink);background:var(--white);outline:none;transition:border-color var(--ease),box-shadow var(--ease);-webkit-appearance:none;appearance:none;}
+.inp:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(45,106,79,.12);}
 .inp.err{border-color:var(--red);box-shadow:0 0 0 3px rgba(184,50,50,.1);}
 .inp::placeholder{color:var(--stone);}
-select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236a4c36' fill='none' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:36px;}
-textarea.inp{resize:vertical;min-height:86px;line-height:1.6;}
-.err-msg{font-size:12px;color:var(--red);}
+select.inp{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236a4c36' fill='none' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px;}
+textarea.inp{resize:vertical;min-height:90px;line-height:1.6;}
+.field{display:flex;flex-direction:column;}
+.err-msg{font-size:12px;color:var(--red);margin-top:4px;}
 
-/* ── Cards & Panels ────────────────────────────── */
-.card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden;}
-.panel{background:var(--white);border-radius:var(--radius-lg);border:1.5px solid var(--linen);padding:22px;}
+/* ─── Cards / Panels ─────────────────────── */
+.card{background:var(--white);border-radius:var(--r16);box-shadow:var(--sh2);overflow:hidden;}
+.panel{background:var(--white);border-radius:var(--r12);border:1.5px solid var(--linen);padding:18px;}
 
-/* ── Room Card ─────────────────────────────────── */
-.room-card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden;transition:box-shadow var(--transition),transform var(--transition);border:1.5px solid var(--linen);}
-.room-card:hover:not(.booked){box-shadow:var(--shadow-lg);transform:translateY(-3px);}
-.room-card.booked{opacity:.55;cursor:not-allowed;}
-
-/* ── Status Badge ──────────────────────────────── */
-.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;}
+/* ─── Badges ─────────────────────────────── */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:var(--rpill);font-size:12px;font-weight:600;}
 .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 
-/* ── Table rows ────────────────────────────────── */
-.info-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--linen);font-size:14px;}
-.info-row:last-child{border-bottom:none;}
+/* ─── Row divider ────────────────────────── */
+.irow{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--linen);font-size:14px;gap:8px;}
+.irow:last-child{border-bottom:none;}
 
-/* ── Payment option ────────────────────────────── */
-.pay-opt{border:1.5px solid var(--warm);border-radius:var(--radius-md);padding:14px 16px;cursor:pointer;transition:all var(--transition);display:flex;align-items:center;gap:14px;}
-.pay-opt:hover{border-color:var(--sage);background:#f7fbf9;}
-.pay-opt.on{border-color:var(--green);background:var(--mint-pale);box-shadow:0 0 0 3px rgba(45,106,79,.1);}
-.pay-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--warm);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--transition);}
-.pay-opt.on .pay-radio{border-color:var(--green);background:var(--green);}
+/* ─── Step bar ───────────────────────────── */
+.steps{display:flex;align-items:center;margin-bottom:24px;}
+.snode{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.scircle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .3s;flex-shrink:0;}
+.sline{flex:1;height:2px;margin:0 6px;border-radius:2px;}
 
-/* ── Step indicator ────────────────────────────── */
-.steps{display:flex;align-items:center;margin-bottom:28px;}
-.step-node{display:flex;align-items:center;gap:7px;flex-shrink:0;}
-.step-circle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .3s;}
-.step-connector{flex:1;height:2px;margin:0 8px;border-radius:2px;transition:background .3s;}
+/* ─── Payment option ─────────────────────── */
+.popt{border:1.5px solid var(--warm);border-radius:var(--r12);padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all var(--ease);-webkit-tap-highlight-color:transparent;}
+.popt:active{background:#f7fbf9;}
+.popt.on{border-color:var(--green);background:var(--mint-pale);box-shadow:0 0 0 3px rgba(45,106,79,.1);}
+.pradio{width:20px;height:20px;border-radius:50%;border:2px solid var(--warm);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--ease);}
+.popt.on .pradio{border-color:var(--green);background:var(--green);}
 
-/* ── Modal / Overlay ───────────────────────────── */
-.overlay{position:fixed;inset:0;background:rgba(10,8,5,.55);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:200;padding:16px;animation:fadeIn .2s ease;}
-.modal{background:var(--white);border-radius:20px;padding:32px;max-width:530px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:var(--shadow-xl);animation:slideUp .25s ease;}
+/* ─── Topbar ─────────────────────────────── */
+.topbar{background:var(--forest);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;position:sticky;top:0;z-index:100;}
 
-/* ── Toast ─────────────────────────────────────── */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--forest);color:#fff;padding:12px 18px;border-radius:var(--radius-md);font-size:14px;font-weight:500;z-index:999;box-shadow:var(--shadow-lg);animation:slideUp .3s ease;display:flex;align-items:center;gap:9px;max-width:320px;}
+/* ─── Room card ──────────────────────────── */
+.rcard{background:var(--white);border-radius:var(--r16);box-shadow:var(--sh1);overflow:hidden;border:1.5px solid var(--linen);transition:box-shadow var(--ease);}
+.rcard:active:not(.booked){box-shadow:var(--sh3);}
+.rcard.booked{opacity:.55;}
 
-/* ── Topbar ────────────────────────────────────── */
-.topbar{background:var(--forest);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;}
-
-/* ── Admin ─────────────────────────────────────── */
-.admin-tabs{display:flex;border-bottom:1.5px solid var(--warm);margin-bottom:20px;overflow-x:auto;gap:2px;}
-.atab{padding:10px 16px;font-size:13px;font-weight:600;color:var(--mist);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1.5px;transition:all .2s;white-space:nowrap;cursor:pointer;}
+/* ─── Admin tabs ─────────────────────────── */
+.atabs{display:flex;border-bottom:1.5px solid var(--warm);margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:2px;}
+.atab{padding:10px 14px;font-size:13px;font-weight:600;color:var(--mist);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1.5px;white-space:nowrap;cursor:pointer;min-height:44px;}
 .atab.on{color:var(--green);border-bottom-color:var(--green);}
-.booking-row{background:var(--white);border-radius:var(--radius-md);padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:box-shadow var(--transition),transform var(--transition);box-shadow:var(--shadow-sm);border-left:3px solid transparent;flex-wrap:wrap;}
-.booking-row:hover{box-shadow:var(--shadow-md);transform:translateY(-1px);}
+.brow{background:var(--white);border-radius:var(--r8);padding:14px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:var(--sh1);border-left:3px solid transparent;flex-wrap:wrap;-webkit-tap-highlight-color:transparent;}
+.brow:active{background:var(--linen);}
 
-/* ── Room grid ─────────────────────────────────── */
-.room-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;}
+/* ─── Overlay / Modal ────────────────────── */
+.overlay{position:fixed;inset:0;background:rgba(10,8,5,.55);backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;z-index:200;animation:fadeIn .2s ease;}
+.modal{background:var(--white);border-radius:20px 20px 0 0;padding:24px 20px 36px;width:100%;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shxl);animation:slideUp .25s ease;}
 
-/* ── Hero ──────────────────────────────────────── */
-.hero{background:linear-gradient(150deg,#122d1f 0%,#1a3d2b 45%,#2d6a4f 100%);min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px 80px;text-align:center;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1' fill='white' fill-opacity='.04'/%3E%3C/svg%3E");}
+/* ─── Toast ──────────────────────────────── */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--forest);color:#fff;padding:12px 18px;border-radius:var(--rpill);font-size:14px;font-weight:500;z-index:999;box-shadow:var(--sh3);animation:slideUp .3s ease;white-space:nowrap;}
 
-/* ── Search card ───────────────────────────────── */
-.search-card{background:var(--white);border-radius:var(--radius-xl);box-shadow:var(--shadow-xl);padding:24px 28px;max-width:780px;width:100%;margin:-44px auto 0;position:relative;z-index:10;}
+/* ─── Hero ───────────────────────────────── */
+.hero{background:linear-gradient(150deg,#122d1f 0%,#1a3d2b 50%,#2d6a4f 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:52px 20px 72px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(82,135,106,.25) 0%,transparent 60%);}
 
-/* ── Filters ───────────────────────────────────── */
-.filter-pill{padding:6px 16px;border-radius:var(--radius-pill);border:1.5px solid var(--warm);font-size:13px;font-weight:600;cursor:pointer;transition:all var(--transition);background:var(--white);color:var(--mist);}
-.filter-pill.on{background:var(--forest);border-color:var(--forest);color:var(--white);}
-.filter-pill:hover:not(.on){background:var(--linen);border-color:var(--stone);}
+/* ─── Search card ────────────────────────── */
+.scard{background:var(--white);border-radius:var(--r16);box-shadow:var(--shxl);padding:20px;width:calc(100% - 32px);max-width:720px;margin:-40px auto 0;position:relative;z-index:10;}
 
-/* ── Animations ────────────────────────────────── */
+/* ─── Filter pills ───────────────────────── */
+.fpill{padding:8px 16px;border-radius:var(--rpill);border:1.5px solid var(--warm);font-size:13px;font-weight:600;background:var(--white);color:var(--mist);min-height:36px;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+.fpill.on{background:var(--forest);border-color:var(--forest);color:#fff;}
+.fpill:active:not(.on){background:var(--linen);}
+
+/* ─── Sticky bottom bar ──────────────────── */
+.stickybar{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1.5px solid var(--linen);padding:12px 16px env(safe-area-inset-bottom, 0px);z-index:50;box-shadow:0 -4px 20px rgba(0,0,0,.08);display:none;}
+
+/* ─── Animations ─────────────────────────── */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-.anim-up{animation:slideUp .4s cubic-bezier(.25,.8,.25,1) both;}
-
-/* ── Spinner ───────────────────────────────────── */
+.anim{animation:slideUp .35s cubic-bezier(.25,.8,.25,1) both;}
 .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;}
 
-/* ── Sticky bottom CTA on mobile ──────────────── */
-.sticky-cta{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1.5px solid var(--linen);padding:14px 20px;display:none;z-index:50;box-shadow:0 -4px 20px rgba(0,0,0,.08);}
+/* ─── Print ──────────────────────────────── */
+@media print{.noprint{display:none!important;}.topbar{position:relative;}}
 
-/* ── Print ─────────────────────────────────────── */
-@media print{
-  .no-print{display:none!important;}
-  .topbar{position:relative;}
-  body{background:white;}
-  .card,.modal{box-shadow:none;border:1px solid #ddd;}
+/* ─── DESKTOP hover effects ──────────────── */
+@media(hover:hover){
+  .btn-forest:hover:not(:disabled){background:#122d1f;box-shadow:0 4px 16px rgba(26,61,43,.3);transform:translateY(-1px);}
+  .btn-gold:hover:not(:disabled){background:#b07e30;box-shadow:0 4px 16px rgba(200,145,60,.3);transform:translateY(-1px);}
+  .btn-sage:hover:not(:disabled){background:#3d6b52;transform:translateY(-1px);}
+  .btn-red:hover:not(:disabled){background:#9e2a2a;transform:translateY(-1px);}
+  .btn-outline:hover:not(:disabled){background:var(--forest);color:#fff;}
+  .btn-ghost:hover:not(:disabled){background:var(--linen);color:var(--ink);}
+  .rcard:hover:not(.booked){box-shadow:var(--sh3);transform:translateY(-2px);}
+  .fpill:hover:not(.on){background:var(--linen);border-color:var(--stone);}
+  .popt:hover{border-color:var(--sage);background:#f7fbf9;}
+  .brow:hover{box-shadow:var(--sh2);}
 }
 
-/* ── Responsive ────────────────────────────────── */
-@media(max-width:760px){
-  .room-grid{grid-template-columns:1fr;}
-  .hide-sm{display:none!important;}
-  .search-card{margin:0 16px;border-radius:var(--radius-lg);}
-  .steps .step-node:not(.active) .step-label{display:none;}
-  .sticky-cta{display:flex;gap:10px;}
-  .modal{padding:22px 18px;border-radius:16px;}
-  .hero{padding:50px 20px 64px;}
+/* ─── MOBILE — base overrides ─────────────── */
+@media(max-width:640px){
+  .topbar{height:52px;}
+  .modal{border-radius:20px 20px 0 0;padding:22px 16px 32px;}
+  .toast{bottom:72px;}
+  .hero{padding:44px 16px 64px;}
+  .scard{width:calc(100% - 24px);padding:16px;}
+  .stickybar{display:flex;align-items:center;gap:10px;}
+  /* Hide step labels on tiny screens except active */
+  .slabel{display:none;}
+  .slabel.active{display:inline;}
 }
-@media(max-width:480px){
-  .search-fields{flex-direction:column;}
-  .booking-grid{grid-template-columns:1fr!important;}
+
+/* ─── MOBILE — grid collapses ─────────────── */
+@media(max-width:640px){
+  .grid2{grid-template-columns:1fr!important;}
+  .bkgrid{grid-template-columns:1fr!important;}
 }
+
+/* ─── Room grid ───────────────────────────── */
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+@media(max-width:640px){.rgrid{grid-template-columns:1fr;gap:12px;}}
+
+/* ─── Admin stats grid ────────────────────── */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+@media(max-width:480px){.sgrid{grid-template-columns:1fr 1fr;}}
+
+/* ─── Booking form layout ─────────────────── */
+.bkgrid{display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:start;}
+@media(max-width:700px){.bkgrid{grid-template-columns:1fr;}}
+
+/* ─── Date fields side by side on mobile ─── */
+.date2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:360px){.date2{grid-template-columns:1fr;}}
+
+/* ─── Phone+email side by side ───────────── */
+.pe2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:480px){.pe2{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -172,110 +204,93 @@ textarea.inp{resize:vertical;min-height:86px;line-height:1.6;}
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 <script type="text/babel" data-presets="react">
-const { useState, useEffect, useRef, useMemo, useCallback } = React;
+const {useState,useEffect,useRef,useCallback}=React;
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CONFIG  — edit this section for your property
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const C = {
-  name:        "La Fleur Transient Inn",
-  tagline:     "A peaceful retreat in the heart of the city",
-  address:     "123 Bloom Street, Quezon City",
-  phone:       "0917-123-4567",
-  fb:          "fb.com/lafleurinn",
-  viber:       "0917-123-4567",
-  checkIn:     "2:00 PM",
-  checkOut:    "12:00 PM",
-  dpRate:      0.5,           // 50% downpayment
-  adminPin:    "1234",        // ← CHANGE THIS before going live!
-  gcashName:   "Maria Santos",
-  gcashNum:    "0917-123-4567",
-  mayaNum:     "0917-123-4567",
-  bankName:    "BDO",
-  bankAcct:    "1234-5678-90",
-  bankHolder:  "Maria Santos",
+/* ━━━━ CONFIG — Edit this for your property ━━━━ */
+const C={
+  name:       "La Fleur Transient Inn",
+  tagline:    "A peaceful retreat in the heart of the city",
+  address:    "123 Bloom Street, Quezon City",
+  phone:      "0917-123-4567",
+  fb:         "fb.com/lafleurinn",
+  checkIn:    "2:00 PM",
+  checkOut:   "12:00 PM",
+  dpRate:     0.5,
+  adminPin:   "1234",        // ← CHANGE THIS!
+  gcashName:  "Maria Santos",
+  gcashNum:   "0917-123-4567",
+  mayaNum:    "0917-123-4567",
+  bankName:   "BDO",
+  bankAcct:   "1234-5678-90",
+  bankHolder: "Maria Santos",
 };
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ROOMS — edit name, price, capacity, desc
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const ROOMS = [
-  {id:"rm1",       name:"Room 1",       type:"Standard", price:500,  cap:2, beds:"1 Double Bed",        grad:"linear-gradient(135deg,#c8dfd2 0%,#8fbfa6 100%)", desc:"Quiet garden-facing room with natural ventilation and warm bedside lighting."},
-  {id:"rm2",       name:"Room 2",       type:"Standard", price:500,  cap:2, beds:"1 Double Bed",        grad:"linear-gradient(135deg,#c2d8cc 0%,#85b49a 100%)", desc:"Comfortable room with city glimpse and blackout curtains for restful sleep."},
-  {id:"rm3",       name:"Room 3",       type:"Standard", price:550,  cap:3, beds:"1 Dbl + 1 Single",   grad:"linear-gradient(135deg,#cce3d4 0%,#8dbba4 100%)", desc:"Slightly larger room with an extra single bed — ideal for a small group."},
-  {id:"rm4",       name:"Room 4",       type:"Standard", price:550,  cap:3, beds:"1 Dbl + 1 Single",   grad:"linear-gradient(135deg,#c6dece 0%,#88b69e 100%)", desc:"Peaceful courtyard-facing room with good cross-ventilation and ample closet space."},
-  {id:"rm5",       name:"Room 5",       type:"Standard", price:600,  cap:4, beds:"2 Double Beds",      grad:"linear-gradient(135deg,#bbd8c7 0%,#80b098 100%)", desc:"Our largest standard room with two beds and a private reading corner."},
-  {id:"attic",     name:"Attic Room",   type:"Loft",     price:750,  cap:4, beds:"2 Beds + Loft Area", grad:"linear-gradient(135deg,#e2d0bc 0%,#c4a47e 100%)", desc:"Charming loft with exposed wooden beams, skylights, and a cozy upper sleeping area."},
-  {id:"2nd-flr",   name:"2nd Floor",   type:"Suite",    price:1200, cap:6, beds:"Multiple Beds",      grad:"linear-gradient(135deg,#b8cde8 0%,#7aa8d4 100%)", desc:"Exclusive full-floor suite — spacious sala and multiple rooms, perfect for families."},
-  {id:"1st-flr",   name:"1st Floor",   type:"Suite",    price:1100, cap:6, beds:"Multiple Beds",      grad:"linear-gradient(135deg,#bccfe6 0%,#7ea6d0 100%)", desc:"Private first-floor suite with direct terrace access and a shared living area."},
-  {id:"magne",     name:"Magne",        type:"Themed",   price:800,  cap:2, beds:"1 King Bed",         grad:"linear-gradient(135deg,#d0bedd 0%,#a880c4 100%)", desc:"Deep jewel tones, moody ambient lighting, and romantic décor for a special occasion."},
-  {id:"sunflower", name:"Sunflower",    type:"Themed",   price:750,  cap:2, beds:"1 Queen Bed",        grad:"linear-gradient(135deg,#f0dfa0 0%,#e0c44e 100%)", desc:"Warm golden walls and floral accents fill the room with brightness and good cheer."},
-  {id:"cherry",    name:"Cherry",       type:"Themed",   price:750,  cap:2, beds:"1 Queen Bed",        grad:"linear-gradient(135deg,#f0c8c8 0%,#e08888 100%)", desc:"Soft blush palette with cherry blossom artwork and gentle romantic details."},
-  {id:"sampaguita",name:"Sampaguita",   type:"Themed",   price:700,  cap:2, beds:"1 Queen Bed",        grad:"linear-gradient(135deg,#ddeede 0%,#a4cca6 100%)", desc:"Crisp whites and fresh greens inspired by the Philippine national flower."},
-  {id:"lily",      name:"Lily",         type:"Themed",   price:700,  cap:2, beds:"1 Queen Bed",        grad:"linear-gradient(135deg,#e0d8f0 0%,#b8a8e4 100%)", desc:"Serene ivory and soft lavender with elegant lily motifs throughout the room."},
-  {id:"charrie",   name:"Charrie",      type:"Themed",   price:800,  cap:3, beds:"1 Dbl + 1 Single",  grad:"linear-gradient(135deg,#e8d4b8 0%,#c8a07a 100%)", desc:"Rustic earthy palette with wicker accents and a warm countryside-cottage feeling."},
+/* ━━━━ ROOMS ━━━━ */
+const ROOMS=[
+  {id:"rm1",      name:"Room 1",      type:"Standard",price:500, cap:2,beds:"1 Double Bed",      grad:"linear-gradient(135deg,#c8dfd2,#8fbfa6)",desc:"Quiet garden-facing room with natural ventilation and warm bedside lighting."},
+  {id:"rm2",      name:"Room 2",      type:"Standard",price:500, cap:2,beds:"1 Double Bed",      grad:"linear-gradient(135deg,#c2d8cc,#85b49a)",desc:"Comfortable room with city glimpse and blackout curtains for restful sleep."},
+  {id:"rm3",      name:"Room 3",      type:"Standard",price:550, cap:3,beds:"1 Dbl + 1 Single", grad:"linear-gradient(135deg,#cce3d4,#8dbba4)",desc:"Slightly larger with an extra single bed — ideal for a small group."},
+  {id:"rm4",      name:"Room 4",      type:"Standard",price:550, cap:3,beds:"1 Dbl + 1 Single", grad:"linear-gradient(135deg,#c6dece,#88b69e)",desc:"Peaceful courtyard-facing room with good cross-ventilation and ample storage."},
+  {id:"rm5",      name:"Room 5",      type:"Standard",price:600, cap:4,beds:"2 Double Beds",    grad:"linear-gradient(135deg,#bbd8c7,#80b098)",desc:"Our largest standard room with two beds and a private reading corner."},
+  {id:"attic",    name:"Attic Room",  type:"Loft",    price:750, cap:4,beds:"2 Beds + Loft",    grad:"linear-gradient(135deg,#e2d0bc,#c4a47e)",desc:"Charming loft with exposed wooden beams, skylights, and an upper sleeping area."},
+  {id:"2nd-flr",  name:"2nd Floor",  type:"Suite",   price:1200,cap:6,beds:"Multiple Beds",     grad:"linear-gradient(135deg,#b8cde8,#7aa8d4)",desc:"Exclusive full-floor suite — sala and multiple rooms, perfect for families."},
+  {id:"1st-flr",  name:"1st Floor",  type:"Suite",   price:1100,cap:6,beds:"Multiple Beds",     grad:"linear-gradient(135deg,#bccfe6,#7ea6d0)",desc:"Private first-floor suite with direct terrace access and shared living area."},
+  {id:"magne",    name:"Magne",       type:"Themed",  price:800, cap:2,beds:"1 King Bed",        grad:"linear-gradient(135deg,#d0bedd,#a880c4)",desc:"Deep jewel tones, moody ambient lighting, and romantic décor."},
+  {id:"sunflower",name:"Sunflower",   type:"Themed",  price:750, cap:2,beds:"1 Queen Bed",       grad:"linear-gradient(135deg,#f0dfa0,#e0c44e)",desc:"Warm golden walls and floral accents full of brightness and cheer."},
+  {id:"cherry",   name:"Cherry",      type:"Themed",  price:750, cap:2,beds:"1 Queen Bed",       grad:"linear-gradient(135deg,#f0c8c8,#e08888)",desc:"Soft blush palette with cherry blossom artwork and romantic details."},
+  {id:"sampaguita",name:"Sampaguita",type:"Themed",   price:700, cap:2,beds:"1 Queen Bed",       grad:"linear-gradient(135deg,#ddeede,#a4cca6)",desc:"Crisp whites and fresh greens inspired by the Philippine national flower."},
+  {id:"lily",     name:"Lily",        type:"Themed",  price:700, cap:2,beds:"1 Queen Bed",       grad:"linear-gradient(135deg,#e0d8f0,#b8a8e4)",desc:"Serene ivory and soft lavender with elegant lily motifs throughout."},
+  {id:"charrie",  name:"Charrie",     type:"Themed",  price:800, cap:3,beds:"1 Dbl + 1 Single", grad:"linear-gradient(135deg,#e8d4b8,#c8a07a)",desc:"Rustic earthy palette with wicker accents and warm cottage feeling."},
 ];
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   STATUS CONFIG
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const STATUS = {
-  pending_verification:{label:"Pending",    dot:"#e6a817", bg:"#fef8e7", fg:"#8a5f00", borderLeft:"#f0c040"},
-  approved:            {label:"Approved",   dot:"#2d9e5f", bg:"#e8f7ee", fg:"#1a5e36", borderLeft:"#2d9e5f"},
-  rejected:            {label:"Rejected",   dot:"#c0392b", bg:"#fde8e8", fg:"#8a1515", borderLeft:"#c0392b"},
-  checked_in:          {label:"Checked In", dot:"#1d4ed8", bg:"#dbeafe", fg:"#1a3a8a", borderLeft:"#1d4ed8"},
-  checked_out:         {label:"Completed",  dot:"#6b7280", bg:"#f3f4f6", fg:"#374151", borderLeft:"#a0a0a0"},
+const TC={
+  Standard:{fg:"#1a5e36",bg:"#e8f7ee",bd:"#a3d4b0"},
+  Loft:    {fg:"#7c4a00",bg:"#fef3e2",bd:"#e4c07a"},
+  Suite:   {fg:"#1a3a8a",bg:"#dbeafe",bd:"#93c5fd"},
+  Themed:  {fg:"#5c2d8a",bg:"#f5e8ff",bd:"#c4a0e8"},
 };
 
-const TYPE_COLORS = {
-  Standard:{fg:"#1a5e36", bg:"#e8f7ee", border:"#a3d4b0"},
-  Loft:    {fg:"#7c4a00", bg:"#fef3e2", border:"#e4c07a"},
-  Suite:   {fg:"#1a3a8a", bg:"#dbeafe", border:"#93c5fd"},
-  Themed:  {fg:"#5c2d8a", bg:"#f5e8ff", border:"#c4a0e8"},
+const ST={
+  pending_verification:{label:"Pending",    dot:"#e6a817",bg:"#fef8e7",fg:"#8a5f00",bl:"#f0c040"},
+  approved:            {label:"Approved",   dot:"#2d9e5f",bg:"#e8f7ee",fg:"#1a5e36",bl:"#2d9e5f"},
+  rejected:            {label:"Rejected",   dot:"#c0392b",bg:"#fde8e8",fg:"#8a1515",bl:"#c0392b"},
+  checked_in:          {label:"Checked In", dot:"#1d4ed8",bg:"#dbeafe",fg:"#1a3a8a",bl:"#1d4ed8"},
+  checked_out:         {label:"Completed",  dot:"#6b7280",bg:"#f3f4f6",fg:"#374151",bl:"#a0a0a0"},
 };
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   UTILITIES
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const peso   = n => `₱${Number(n||0).toLocaleString("en-PH")}`;
-const today  = () => new Date().toISOString().split("T")[0];
-const fmtD   = d => d ? new Date(d).toLocaleDateString("en-PH",{weekday:"short",month:"long",day:"numeric",year:"numeric"}) : "—";
-const fmtS   = d => d ? new Date(d).toLocaleDateString("en-PH",{month:"short",day:"numeric",year:"numeric"}) : "—";
-const fmtDT  = d => d ? new Date(d).toLocaleString("en-PH",{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}) : "—";
-const nights = (a,b) => { if(!a||!b)return 0; const n=Math.round((new Date(b)-new Date(a))/86400000); return n>0?n:0; };
-const genRef = () => "LF"+Date.now().toString(36).toUpperCase().slice(-5)+Math.random().toString(36).slice(2,4).toUpperCase();
-const overlap= (a1,a2,b1,b2) => new Date(a1)<new Date(b2)&&new Date(a2)>new Date(b1);
+/* ━━━━ UTILS ━━━━ */
+const peso   = n=>`₱${Number(n||0).toLocaleString("en-PH")}`;
+const today  = ()=>new Date().toISOString().split("T")[0];
+const fmtD   = d=>d?new Date(d).toLocaleDateString("en-PH",{weekday:"short",month:"long",day:"numeric",year:"numeric"}):"—";
+const fmtS   = d=>d?new Date(d).toLocaleDateString("en-PH",{month:"short",day:"numeric",year:"numeric"}):"—";
+const fmtDT  = d=>d?new Date(d).toLocaleString("en-PH",{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):"—";
+const nts    = (a,b)=>{if(!a||!b)return 0;const n=Math.round((new Date(b)-new Date(a))/86400000);return n>0?n:0;};
+const genRef = ()=>"LF"+Date.now().toString(36).toUpperCase().slice(-5)+Math.random().toString(36).slice(2,4).toUpperCase();
+const lap    = (a1,a2,b1,b2)=>new Date(a1)<new Date(b2)&&new Date(a2)>new Date(b1);
 const ACTIVE = ["pending_verification","approved","checked_in"];
+const isAvail= (rid,ci,co,bks,skip=null)=>!bks.some(b=>b.roomId===rid&&b.ref!==skip&&ACTIVE.includes(b.status)&&lap(ci,co,b.checkIn,b.checkOut));
 
-function isAvail(roomId, ci, co, bookings, skip=null){
-  return !bookings.some(b => b.roomId===roomId && b.ref!==skip && ACTIVE.includes(b.status) && overlap(ci,co,b.checkIn,b.checkOut));
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   STORAGE — uses localStorage for deployed version
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const DB = {
-  load:()=>{ try{return JSON.parse(localStorage.getItem("lafleur_bookings")||"[]")}catch{return[]} },
-  save:(d)=>{ try{localStorage.setItem("lafleur_bookings",JSON.stringify(d));return true}catch{return false} },
+/* ━━━━ STORAGE ━━━━ */
+const DB={
+  load:()=>{try{return JSON.parse(localStorage.getItem("lafleur_v1")||"[]")}catch{return[]}},
+  save:d=>{try{localStorage.setItem("lafleur_v1",JSON.stringify(d))}catch{}},
 };
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SMALL COMPONENTS
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function Toast({msg, onHide}){
-  useEffect(()=>{ if(msg){const t=setTimeout(onHide,2800);return()=>clearTimeout(t);} },[msg]);
+/* ━━━━ SMALL COMPONENTS ━━━━ */
+function Toast({msg,onHide}){
+  useEffect(()=>{if(msg){const t=setTimeout(onHide,2600);return()=>clearTimeout(t);}},[msg]);
   if(!msg)return null;
-  return <div className="toast no-print">✓ {msg}</div>;
+  return <div className="toast noprint">✓ {msg}</div>;
 }
 
-function SBadge({status}){
-  const s=STATUS[status]||STATUS.pending_verification;
-  return <span className="badge" style={{background:s.bg,color:s.fg}}><span className="dot" style={{background:s.dot}}/>{s.label}</span>;
+function SBadge({s}){
+  const x=ST[s]||ST.pending_verification;
+  return <span className="badge" style={{background:x.bg,color:x.fg}}><span className="dot" style={{background:x.dot}}/>{x.label}</span>;
 }
 
-function TypeBadge({type}){
-  const t=TYPE_COLORS[type]||{fg:"#333",bg:"#eee",border:"#ccc"};
-  return <span className="badge" style={{background:t.bg,color:t.fg,border:`1px solid ${t.border}`,fontSize:11}}>{type}</span>;
+function TBadge({type}){
+  const t=TC[type]||{fg:"#333",bg:"#eee",bd:"#ccc"};
+  return <span className="badge" style={{background:t.bg,color:t.fg,border:`1px solid ${t.bd}`,fontSize:11}}>{type}</span>;
 }
 
 function StepBar({step}){
@@ -283,16 +298,14 @@ function StepBar({step}){
   return(
     <div className="steps">
       {steps.map((s,i)=>{
-        const done=i<step, active=i===step;
+        const done=i<step,active=i===step;
         return(
           <React.Fragment key={i}>
-            <div className={`step-node${active?" active":""}`}>
-              <div className="step-circle" style={{background:done?"var(--green)":active?"var(--forest)":"var(--warm)",color:done||active?"#fff":"var(--stone)"}}>
-                {done?"✓":i+1}
-              </div>
-              <span className="step-label" style={{fontSize:13,fontWeight:active?600:400,color:active?"var(--forest)":done?"var(--green)":"var(--stone)"}}>{s}</span>
+            <div className="snode">
+              <div className="scircle" style={{background:done?"var(--green)":active?"var(--forest)":"var(--warm)",color:done||active?"#fff":"var(--stone)"}}>{done?"✓":i+1}</div>
+              <span className={`slabel${active?" active":""}`} style={{fontSize:12,fontWeight:active?600:400,color:active?"var(--forest)":done?"var(--green)":"var(--stone)"}}>{s}</span>
             </div>
-            {i<steps.length-1&&<div className="step-connector" style={{background:done?"var(--green)":"var(--warm)"}}/>}
+            {i<steps.length-1&&<div className="sline" style={{background:done?"var(--green)":"var(--warm)"}}/>}
           </React.Fragment>
         );
       })}
@@ -300,58 +313,52 @@ function StepBar({step}){
   );
 }
 
-function Topbar({onAdmin, showAdmin=true}){
+function Bar({onAdmin,back,backLabel="← Back",title,showAdmin=false}){
   return(
-    <div className="topbar no-print">
-      <div style={{display:"flex",alignItems:"center",gap:14}}>
-        <div style={{width:36,height:36,background:"rgba(255,255,255,.1)",borderRadius:10,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>🌿</div>
-        <div>
-          <div className="serif" style={{color:"#fff",fontSize:19,fontWeight:600,lineHeight:1.1}}>{C.name}</div>
-          <div style={{color:"rgba(255,255,255,.45)",fontSize:11,letterSpacing:"0.06em",marginTop:1}}>TRANSIENT INN</div>
-        </div>
+    <div className="topbar noprint">
+      <div style={{display:"flex",alignItems:"center",gap:10}}>
+        {back&&<button className="btn btn-wg btn-sm" onClick={back}>{backLabel}</button>}
+        {!back&&<div style={{width:34,height:34,background:"rgba(255,255,255,.1)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:17}}>🌿</div>}
+        <span className="serif" style={{color:"#fff",fontSize:17,fontWeight:600}}>{title||C.name}</span>
       </div>
-      {showAdmin&&onAdmin&&<button className="btn-white-ghost btn" onClick={onAdmin}>⚙ Admin</button>}
+      {showAdmin&&onAdmin&&<button className="btn btn-wg btn-sm" onClick={onAdmin}>⚙ Admin</button>}
     </div>
   );
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ADMIN — LOGIN
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function AdminLogin({onSuccess, onBack}){
+/* ━━━━ ADMIN LOGIN ━━━━ */
+function AdminLogin({onOk,onBack}){
   const [pin,setPin]=useState(""), [err,setErr]=useState(""), [shake,setShake]=useState(false);
   const ref=useRef();
   useEffect(()=>ref.current?.focus(),[]);
-  function attempt(){
-    if(pin===C.adminPin){onSuccess();}
-    else{setErr("Incorrect PIN — please try again.");setPin("");setShake(true);setTimeout(()=>setShake(false),500);}
+  function go(){
+    if(pin===C.adminPin){onOk();}
+    else{setErr("Incorrect PIN. Try again.");setPin("");setShake(true);setTimeout(()=>setShake(false),400);}
   }
   return(
     <div style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",background:"var(--ivory)",padding:20}}>
-      <div className="card anim-up" style={{width:360,padding:"44px 36px",textAlign:"center",borderRadius:20}}>
-        <div style={{width:58,height:58,background:"var(--forest)",borderRadius:14,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 20px",fontSize:26}}>🔐</div>
-        <h2 className="serif" style={{fontSize:30,fontWeight:600,marginBottom:6}}>Admin Access</h2>
-        <p style={{color:"var(--mist)",fontSize:14,marginBottom:28}}>{C.name}</p>
+      <div className="card anim" style={{width:"100%",maxWidth:340,padding:"36px 28px",textAlign:"center",borderRadius:20}}>
+        <div style={{width:54,height:54,background:"var(--forest)",borderRadius:14,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 16px",fontSize:24}}>🔐</div>
+        <h2 className="serif" style={{fontSize:28,fontWeight:600,marginBottom:4}}>Admin Access</h2>
+        <p style={{color:"var(--mist)",fontSize:14,marginBottom:24}}>{C.name}</p>
         <div className="field" style={{marginBottom:14}}>
-          <label className="label-xs" style={{textAlign:"left"}}>PIN</label>
+          <label className="lbl" style={{textAlign:"left"}}>PIN</label>
           <input ref={ref} className={`inp ${err?"err":""}`} type="password" inputMode="numeric" maxLength={8}
-            placeholder="Enter your PIN" value={pin}
-            style={{textAlign:"center",fontSize:22,letterSpacing:10,transition:"transform .15s",transform:shake?"translateX(-5px)":"none"}}
-            onChange={e=>{setPin(e.target.value);setErr("");}} onKeyDown={e=>e.key==="Enter"&&attempt()}/>
+            placeholder="Enter PIN" value={pin}
+            style={{textAlign:"center",fontSize:22,letterSpacing:10,transition:"transform .1s",transform:shake?"translateX(-5px)":"none"}}
+            onChange={e=>{setPin(e.target.value);setErr("");}} onKeyDown={e=>e.key==="Enter"&&go()}/>
           {err&&<span className="err-msg">{err}</span>}
         </div>
-        <button className="btn btn-forest btn-lg" style={{width:"100%",marginBottom:10}} onClick={attempt}>Sign In →</button>
-        <button className="btn btn-ghost btn-md" style={{width:"100%"}} onClick={onBack}>← Back to Booking</button>
-        <p style={{marginTop:20,fontSize:11,color:"var(--stone)"}}>Default PIN: <strong>1234</strong> — change <code>adminPin</code> in CONFIG</p>
+        <button className="btn btn-forest btn-lg" style={{width:"100%",marginBottom:10}} onClick={go}>Sign In →</button>
+        <button className="btn btn-ghost" style={{width:"100%"}} onClick={onBack}>← Back to Booking</button>
+        <p style={{marginTop:18,fontSize:11,color:"var(--stone)"}}>Default PIN: <strong>1234</strong> · Change <code>adminPin</code> in CONFIG</p>
       </div>
     </div>
   );
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ADMIN — DASHBOARD
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function AdminDashboard({bookings, onUpdate, onDelete, onLogout}){
+/* ━━━━ ADMIN DASHBOARD ━━━━ */
+function AdminDash({bookings,onUpdate,onDelete,onLogout}){
   const [tab,setTab]=useState("all");
   const [q,setQ]=useState("");
   const [sel,setSel]=useState(null);
@@ -359,8 +366,7 @@ function AdminDashboard({bookings, onUpdate, onDelete, onLogout}){
   const [toast,setToast]=useState("");
   const [copied,setCopied]=useState(false);
 
-  function toast$(m){setToast(m);}
-  function copy(txt){navigator.clipboard.writeText(txt).then(()=>{setCopied(true);setTimeout(()=>setCopied(false),2000);toast$("Copied to clipboard");})}
+  function copy(txt){navigator.clipboard.writeText(txt).then(()=>{setCopied(true);setTimeout(()=>setCopied(false),2000);setToast("Copied!");});}
 
   const cnt={
     all:bookings.length,
@@ -372,7 +378,6 @@ function AdminDashboard({bookings, onUpdate, onDelete, onLogout}){
   };
 
   const dpRev=bookings.filter(b=>["approved","checked_in","checked_out"].includes(b.status)).reduce((s,b)=>s+(b.downpayment||0),0);
-  const balanceIn=bookings.filter(b=>b.status==="checked_in").reduce((s,b)=>s+(b.total-b.downpayment||0),0);
 
   const list=bookings.filter(b=>{
     const tOk=tab==="all"||b.status===tab;
@@ -389,49 +394,13 @@ function AdminDashboard({bookings, onUpdate, onDelete, onLogout}){
     const b=bookings.find(x=>x.ref===ref);
     onUpdate({...b,status,adminNote:adminNote||undefined,updatedAt:new Date().toISOString()});
     setSel(null);setNote("");
-    const msgs={approved:"Booking approved ✓",rejected:"Booking rejected",checked_in:"Marked as checked in 🔑",checked_out:"Marked as checked out 🏁"};
-    toast$(msgs[status]||"Updated");
+    const m={approved:"Booking approved ✓",rejected:"Booking rejected",checked_in:"Marked as checked in 🔑",checked_out:"Marked as checked out 🏁"};
+    setToast(m[status]||"Updated");
   }
 
-  const buildConfirm=b=>`Hi ${b.guestName}! 🌿
-
-Your reservation at ${C.name} is CONFIRMED! ✅
-
-📋 Reference No.:  ${b.ref}
-🛏  Room:          ${b.roomName}
-📅 Check-In:      ${fmtD(b.checkIn)} at ${C.checkIn}
-📅 Check-Out:     ${fmtD(b.checkOut)} at ${C.checkOut}
-👥 Guests:        ${b.guestGuests} person(s)
-
-💳 Downpayment received: ${peso(b.downpayment)}
-💰 Balance on arrival:   ${peso(b.total-b.downpayment)}
-
-Please present this message or your reference number upon check-in.
-For questions, reach us at ${C.phone}.
-
-We look forward to welcoming you! 🏡
-— ${C.name}`;
-
-  const buildReject=b=>`Hi ${b.guestName},
-
-We're sorry to inform you that your booking request (Ref: ${b.ref}) could not be confirmed at this time.${b.adminNote?"\n\nReason: "+b.adminNote:""}
-
-Please contact us at ${C.phone} or message us on Facebook to rebook or for any assistance.
-
-We apologize for the inconvenience.
-— ${C.name}`;
-
-  const buildCheckin=b=>`Hi ${b.guestName}! 🔑
-
-Welcome to ${C.name}! We're happy to have you.
-
-📋 Ref:          ${b.ref}
-🛏  Room:        ${b.roomName}
-📅 Check-Out:   ${fmtD(b.checkOut)} at ${C.checkOut}
-💰 Balance Due: ${peso(b.total-b.downpayment)}
-
-Enjoy your stay — don't hesitate to reach out. 😊
-— ${C.name} · ${C.phone}`;
+  const confirm=b=>`Hi ${b.guestName}! 🌿\n\nYour reservation at ${C.name} is CONFIRMED! ✅\n\n📋 Ref No.: ${b.ref}\n🛏  Room: ${b.roomName}\n📅 Check-In: ${fmtD(b.checkIn)} at ${C.checkIn}\n📅 Check-Out: ${fmtD(b.checkOut)} at ${C.checkOut}\n👥 Guests: ${b.guestGuests} person(s)\n\n💳 Downpayment received: ${peso(b.downpayment)}\n💰 Balance on arrival: ${peso(b.total-b.downpayment)}\n\nPlease show this message or your ref no. upon check-in.\nContact us at ${C.phone}.\n\nSee you soon! 🏡\n— ${C.name}`;
+  const reject=b=>`Hi ${b.guestName},\n\nWe regret that your booking (Ref: ${b.ref}) could not be confirmed.${b.adminNote?"\n\nReason: "+b.adminNote:""}\n\nPlease contact us at ${C.phone} or Facebook to rebook.\n\nSorry for the inconvenience.\n— ${C.name}`;
+  const checkin=b=>`Hi ${b.guestName}! 🔑\n\nWelcome to ${C.name}!\n\n📋 Ref: ${b.ref} · Room: ${b.roomName}\n📅 Check-Out: ${fmtD(b.checkOut)} at ${C.checkOut}\n💰 Balance Due: ${peso(b.total-b.downpayment)}\n\nEnjoy your stay! 😊\n— ${C.name} · ${C.phone}`;
 
   const TABS=[
     {id:"all",label:`All (${cnt.all})`},
@@ -445,79 +414,70 @@ Enjoy your stay — don't hesitate to reach out. 😊
   return(
     <div style={{minHeight:"100vh",background:"#f0ece4"}}>
       <Toast msg={toast} onHide={()=>setToast("")}/>
-      {/* Topbar */}
       <div className="topbar">
-        <div style={{display:"flex",alignItems:"center",gap:14}}>
-          <span style={{fontSize:22}}>🏨</span>
+        <div style={{display:"flex",alignItems:"center",gap:12}}>
+          <span style={{fontSize:20}}>🏨</span>
           <div>
-            <div className="serif" style={{color:"#fff",fontSize:18,fontWeight:600}}>{C.name}</div>
-            <div style={{color:"rgba(255,255,255,.4)",fontSize:11,letterSpacing:"0.06em"}}>ADMIN PANEL</div>
+            <div className="serif" style={{color:"#fff",fontSize:17,fontWeight:600}}>{C.name}</div>
+            <div style={{color:"rgba(255,255,255,.4)",fontSize:10,letterSpacing:"0.06em"}}>ADMIN PANEL</div>
           </div>
         </div>
         <div style={{display:"flex",gap:8,alignItems:"center"}}>
-          {cnt.pending_verification>0&&<span className="badge" style={{background:"#fef3c7",color:"#92400e",fontSize:12}}>⏳ {cnt.pending_verification} pending</span>}
-          <button className="btn btn-sm btn-ghost" style={{color:"rgba(255,255,255,.6)",borderColor:"rgba(255,255,255,.2)"}} onClick={onLogout}>Log Out</button>
+          {cnt.pending_verification>0&&<span className="badge" style={{background:"#fef3c7",color:"#92400e"}}>⏳ {cnt.pending_verification}</span>}
+          <button className="btn btn-wg btn-sm" onClick={onLogout}>Log Out</button>
         </div>
       </div>
 
-      <div style={{maxWidth:1100,margin:"0 auto",padding:"28px 18px"}}>
+      <div style={{maxWidth:1000,margin:"0 auto",padding:"20px 14px"}}>
         {/* Stats */}
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(165px,1fr))",gap:12,marginBottom:24}}>
+        <div className="sgrid" style={{marginBottom:20}}>
           {[
-            {label:"Total Bookings",val:cnt.all,icon:"📋",color:"var(--forest)"},
-            {label:"Pending Review",val:cnt.pending_verification,icon:"⏳",color:"#92400e"},
-            {label:"Approved / In",val:cnt.approved+cnt.checked_in,icon:"✅",color:"var(--green)"},
-            {label:"Downpayment In",val:peso(dpRev),icon:"💰",color:"var(--gold)"},
-            {label:"Balance Expected",val:peso(balanceIn),icon:"📊",color:"var(--sage)"},
+            {label:"Total",val:cnt.all,color:"var(--forest)"},
+            {label:"Pending",val:cnt.pending_verification,color:"#92400e"},
+            {label:"Approved",val:cnt.approved+cnt.checked_in,color:"var(--green)"},
+            {label:"DP Collected",val:peso(dpRev),color:"var(--gold)"},
           ].map(s=>(
-            <div key={s.label} style={{background:"var(--white)",borderRadius:12,padding:"16px 18px",boxShadow:"var(--shadow-sm)"}}>
-              <div style={{fontSize:20,marginBottom:4}}>{s.icon}</div>
-              <div className="serif" style={{fontSize:24,fontWeight:600,color:s.color,lineHeight:1}}>{s.val}</div>
-              <div style={{fontSize:11,color:"var(--stone)",marginTop:4}}>{s.label}</div>
+            <div key={s.label} style={{background:"var(--white)",borderRadius:10,padding:"14px 16px",boxShadow:"var(--sh1)"}}>
+              <div style={{fontSize:11,color:"var(--stone)",textTransform:"uppercase",letterSpacing:".05em",marginBottom:4}}>{s.label}</div>
+              <div className="serif" style={{fontSize:22,fontWeight:600,color:s.color}}>{s.val}</div>
             </div>
           ))}
         </div>
 
         {/* Search */}
-        <input className="inp" style={{maxWidth:400,marginBottom:14,background:"var(--white)"}}
-          placeholder="🔍  Search name, reference, room, phone…" value={q} onChange={e=>setQ(e.target.value)}/>
+        <input className="inp" style={{marginBottom:14,background:"var(--white)"}}
+          placeholder="🔍  Search name, ref, room, phone…" value={q} onChange={e=>setQ(e.target.value)}/>
 
         {/* Tabs */}
-        <div className="admin-tabs">
+        <div className="atabs">
           {TABS.map(t=><button key={t.id} className={`atab ${tab===t.id?"on":""}`} onClick={()=>setTab(t.id)}>{t.label}</button>)}
         </div>
 
         {/* List */}
         {list.length===0
-          ?<div style={{textAlign:"center",padding:"64px 0",color:"var(--mist)"}}>
-              <div style={{fontSize:40,marginBottom:12}}>📋</div>
-              <div style={{fontSize:15}}>No bookings {tab!=="all"?"with this status":""} yet.</div>
+          ?<div style={{textAlign:"center",padding:"48px 0",color:"var(--mist)"}}>
+              <div style={{fontSize:36,marginBottom:10}}>📋</div>
+              <p style={{fontSize:15}}>No bookings found.</p>
             </div>
-          :<div style={{display:"flex",flexDirection:"column",gap:9}}>
+          :<div style={{display:"flex",flexDirection:"column",gap:8}}>
               {list.map(b=>{
-                const s=STATUS[b.status];
+                const s=ST[b.status];
                 return(
-                  <div key={b.ref} className="booking-row" style={{borderLeftColor:s.borderLeft}}
+                  <div key={b.ref} className="brow" style={{borderLeftColor:s.bl}}
                     onClick={()=>{setSel(b);setNote(b.adminNote||"");}}>
-                    <div style={{flex:1,minWidth:160}}>
-                      <div style={{fontWeight:700,fontSize:15,marginBottom:2}}>{b.guestName}</div>
-                      <div style={{fontSize:12,color:"var(--mist)"}}>{b.roomName} · {fmtS(b.checkIn)} → {fmtS(b.checkOut)} · {nights(b.checkIn,b.checkOut)}N</div>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontWeight:700,fontSize:15,marginBottom:2,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{b.guestName}</div>
+                      <div style={{fontSize:12,color:"var(--mist)",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{b.roomName} · {fmtS(b.checkIn)} → {fmtS(b.checkOut)}</div>
                     </div>
-                    <div className="hide-sm" style={{minWidth:100}}>
-                      <div style={{fontSize:10,color:"var(--stone)"}}>REF</div>
-                      <div style={{fontWeight:700,fontSize:12,letterSpacing:"0.05em",color:"var(--forest)",fontFamily:"monospace"}}>{b.ref}</div>
-                    </div>
-                    <div className="hide-sm" style={{textAlign:"right",minWidth:90}}>
-                      <div style={{fontSize:10,color:"var(--stone)"}}>DOWNPAYMENT</div>
+                    <div style={{textAlign:"right",flexShrink:0}}>
                       <div style={{fontWeight:700,fontSize:14,color:"var(--green)"}}>{peso(b.downpayment)}</div>
+                      <code style={{fontSize:11,color:"var(--stone)",letterSpacing:".04em"}}>{b.ref}</code>
                     </div>
-                    <SBadge status={b.status}/>
-                    <div style={{fontSize:11,color:"var(--stone)",whiteSpace:"nowrap"}}>{fmtDT(b.createdAt)}</div>
-                    {/* Quick actions */}
+                    <SBadge s={b.status}/>
                     {b.status==="pending_verification"&&(
-                      <div style={{display:"flex",gap:6}} onClick={e=>e.stopPropagation()}>
-                        <button className="btn btn-sage btn-xs" onClick={()=>act(b.ref,"approved","")}>✅ Approve</button>
-                        <button className="btn btn-red btn-xs"  onClick={()=>act(b.ref,"rejected","")}>✕</button>
+                      <div style={{display:"flex",gap:6,flexShrink:0}} onClick={e=>e.stopPropagation()}>
+                        <button className="btn btn-sage btn-xs" onClick={()=>act(b.ref,"approved","")}>✅</button>
+                        <button className="btn btn-red btn-xs" onClick={()=>act(b.ref,"rejected","")}>✕</button>
                       </div>
                     )}
                   </div>
@@ -527,80 +487,64 @@ Enjoy your stay — don't hesitate to reach out. 😊
         }
       </div>
 
-      {/* ── BOOKING DETAIL MODAL ── */}
+      {/* Modal */}
       {sel&&(
         <div className="overlay" onClick={()=>{setSel(null);setNote("");}}>
-          <div className="modal" onClick={e=>e.stopPropagation()}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:18}}>
+          <div className="modal" onClick={e=>e.stopPropagation()} style={{maxWidth:520}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:16}}>
               <div>
-                <h3 className="serif" style={{fontSize:24,fontWeight:600,marginBottom:4}}>Booking Detail</h3>
-                <code style={{fontSize:13,fontWeight:700,color:"var(--forest)",letterSpacing:"0.06em"}}>{sel.ref}</code>
+                <h3 className="serif" style={{fontSize:22,fontWeight:600,marginBottom:3}}>Booking Detail</h3>
+                <code style={{fontSize:13,fontWeight:700,color:"var(--forest)",letterSpacing:".06em"}}>{sel.ref}</code>
               </div>
-              <button className="btn btn-ghost btn-sm" onClick={()=>{setSel(null);setNote("");}}>✕ Close</button>
+              <button className="btn btn-ghost btn-sm" onClick={()=>{setSel(null);setNote("");}}>✕</button>
             </div>
+            <SBadge s={sel.status}/>
+            {sel.updatedAt&&<span style={{fontSize:11,color:"var(--mist)",marginLeft:8}}>Updated {fmtDT(sel.updatedAt)}</span>}
 
-            <SBadge status={sel.status}/>
-            {sel.updatedAt&&<span style={{fontSize:11,color:"var(--mist)",marginLeft:10}}>Updated {fmtDT(sel.updatedAt)}</span>}
-
-            <div style={{background:"var(--ivory)",borderRadius:10,padding:"14px 16px",margin:"16px 0"}}>
+            <div style={{background:"var(--ivory)",borderRadius:10,padding:"12px 14px",margin:"14px 0"}}>
               {[
-                ["Room",sel.roomName],["Room Type",sel.roomType],
+                ["Room",sel.roomName],["Type",sel.roomType],
                 ["Guest",sel.guestName],["Phone",sel.guestPhone],["Email",sel.guestEmail||"—"],
                 ["Guests",`${sel.guestGuests} person(s)`],
                 ["Check-In",`${fmtD(sel.checkIn)} · ${C.checkIn}`],
                 ["Check-Out",`${fmtD(sel.checkOut)} · ${C.checkOut}`],
-                ["Duration",`${nights(sel.checkIn,sel.checkOut)} night(s)`],
-                ["Rate",`${peso(sel.roomRate)}/night`],
-                ["Total Amount",peso(sel.total)],
-                ["Downpayment Paid",peso(sel.downpayment)],
-                ["Balance on Arrival",peso(sel.total-sel.downpayment)],
-                ["Payment Via",(sel.payMethod||"").toUpperCase()],
-                ["Special Requests",sel.guestNotes||"None"],
-                ["Booked At",fmtDT(sel.createdAt)],
+                ["Nights",`${nts(sel.checkIn,sel.checkOut)}`],
+                ["Total",peso(sel.total)],
+                ["Downpayment",peso(sel.downpayment)],
+                ["Balance",peso(sel.total-sel.downpayment)],
+                ["Pay via",(sel.payMethod||"").toUpperCase()],
+                ["Requests",sel.guestNotes||"None"],
+                ["Booked",fmtDT(sel.createdAt)],
               ].map(([k,v])=>(
-                <div key={k} className="info-row">
-                  <span style={{color:"var(--mist)",fontSize:13,flexShrink:0,marginRight:12}}>{k}</span>
+                <div key={k} className="irow">
+                  <span style={{color:"var(--mist)",fontSize:13,flexShrink:0,marginRight:8}}>{k}</span>
                   <span style={{fontWeight:500,fontSize:13,textAlign:"right",wordBreak:"break-word"}}>{v}</span>
                 </div>
               ))}
             </div>
 
-            {sel.adminNote&&(
-              <div style={{background:"var(--yellow-pale)",border:"1px solid var(--yellow-border)",borderRadius:8,padding:"11px 14px",marginBottom:14,fontSize:13,color:"#7a5c00"}}>
-                <strong>Admin Note:</strong> {sel.adminNote}
-              </div>
-            )}
+            {sel.adminNote&&<div style={{background:"var(--yellow-pale)",border:"1px solid var(--yellow-b)",borderRadius:8,padding:"10px 12px",marginBottom:12,fontSize:13,color:"#7a5c00"}}><strong>Admin Note:</strong> {sel.adminNote}</div>}
 
-            {/* Copy message */}
-            {sel.status==="approved"&&(
-              <MsgBox label="📱 Confirmation Message" bg="var(--mint-pale)" border="var(--mint)" color="var(--green)" text={buildConfirm(sel)} onCopy={()=>copy(buildConfirm(sel))} copied={copied}/>
-            )}
-            {sel.status==="checked_in"&&(
-              <MsgBox label="📱 Check-In Welcome Message" bg="var(--blue-pale)" border="#93c5fd" color="var(--blue)" text={buildCheckin(sel)} onCopy={()=>copy(buildCheckin(sel))} copied={copied}/>
-            )}
-            {sel.status==="rejected"&&(
-              <MsgBox label="📱 Rejection Message" bg="var(--red-pale)" border="#fca5a5" color="var(--red)" text={buildReject(sel)} onCopy={()=>copy(buildReject(sel))} copied={copied}/>
-            )}
+            {/* Copy-ready messages */}
+            {sel.status==="approved"&&<CopyMsg label="📱 Confirmation Message" bg="#e8f4ec" bd="var(--mint)" fc="var(--green)" txt={confirm(sel)} onCopy={()=>copy(confirm(sel))} copied={copied}/>}
+            {sel.status==="checked_in"&&<CopyMsg label="📱 Check-In Message" bg="var(--blue-pale)" bd="#93c5fd" fc="var(--blue,#1d4ed8)" txt={checkin(sel)} onCopy={()=>copy(checkin(sel))} copied={copied}/>}
+            {sel.status==="rejected"&&<CopyMsg label="📱 Rejection Message" bg="var(--red-pale)" bd="#fca5a5" fc="var(--red)" txt={reject(sel)} onCopy={()=>copy(reject(sel))} copied={copied}/>}
 
-            {/* Admin note input */}
             {["pending_verification","approved"].includes(sel.status)&&(
               <div className="field" style={{marginBottom:14}}>
-                <label className="label-xs">Admin Note <span style={{fontWeight:300,textTransform:"none",letterSpacing:0,color:"var(--stone)"}}>· optional, shown in rejection message</span></label>
-                <input className="inp" placeholder="e.g. GCash verified · screenshot ref #4821" value={note} onChange={e=>setNote(e.target.value)}/>
+                <label className="lbl">Admin Note · optional</label>
+                <input className="inp" placeholder="e.g. GCash verified · screenshot ref #1234" value={note} onChange={e=>setNote(e.target.value)}/>
               </div>
             )}
 
-            {/* Actions */}
-            <div style={{display:"flex",gap:10,flexWrap:"wrap",marginTop:4}}>
+            <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
               {sel.status==="pending_verification"&&<>
-                <button className="btn btn-sage btn-md" onClick={()=>act(sel.ref,"approved",note)}>✅ Approve Booking</button>
-                <button className="btn btn-red btn-md" onClick={()=>act(sel.ref,"rejected",note)}>Reject</button>
+                <button className="btn btn-sage" style={{flex:1}} onClick={()=>act(sel.ref,"approved",note)}>✅ Approve</button>
+                <button className="btn btn-red" style={{flex:1}} onClick={()=>act(sel.ref,"rejected",note)}>Reject</button>
               </>}
-              {sel.status==="approved"&&<button className="btn btn-forest btn-md" onClick={()=>act(sel.ref,"checked_in",note)}>🔑 Mark Checked In</button>}
-              {sel.status==="checked_in"&&<button className="btn btn-ghost btn-md" onClick={()=>act(sel.ref,"checked_out",note)}>🏁 Mark Checked Out</button>}
-              {["rejected","checked_out"].includes(sel.status)&&(
-                <button className="btn btn-red btn-sm" onClick={()=>{onDelete(sel.ref);setSel(null);toast$("Record deleted");}}>🗑 Delete Record</button>
-              )}
+              {sel.status==="approved"&&<button className="btn btn-forest" style={{flex:1}} onClick={()=>act(sel.ref,"checked_in",note)}>🔑 Mark Checked In</button>}
+              {sel.status==="checked_in"&&<button className="btn btn-ghost" style={{flex:1}} onClick={()=>act(sel.ref,"checked_out",note)}>🏁 Mark Checked Out</button>}
+              {["rejected","checked_out"].includes(sel.status)&&<button className="btn btn-red btn-sm" onClick={()=>{onDelete(sel.ref);setSel(null);setToast("Deleted");}}>🗑 Delete</button>}
             </div>
           </div>
         </div>
@@ -609,133 +553,116 @@ Enjoy your stay — don't hesitate to reach out. 😊
   );
 }
 
-function MsgBox({label,bg,border,color,text,onCopy,copied}){
+function CopyMsg({label,bg,bd,fc,txt,onCopy,copied}){
   return(
-    <div style={{background:bg,border:`1.5px solid ${border}`,borderRadius:10,padding:"14px",marginBottom:14}}>
-      <div style={{fontSize:11,fontWeight:700,color,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:10}}>{label}</div>
-      <pre style={{fontFamily:"monospace",fontSize:12,lineHeight:1.85,whiteSpace:"pre-wrap",color:"var(--ink)",background:"var(--white)",borderRadius:7,padding:"12px 14px",border:`1px solid ${border}`,marginBottom:10,wordBreak:"break-word"}}>{text}</pre>
-      <button className="btn btn-sm" style={{background:color,color:"#fff",border:"none",borderRadius:6,padding:"7px 14px",cursor:"pointer",fontWeight:600,fontSize:13}} onClick={onCopy}>
-        {copied?"✓ Copied!":"📋 Copy Message"}
-      </button>
+    <div style={{background:bg,border:`1.5px solid ${bd}`,borderRadius:10,padding:14,marginBottom:14}}>
+      <div style={{fontSize:11,fontWeight:700,color:fc,textTransform:"uppercase",letterSpacing:".07em",marginBottom:8}}>{label}</div>
+      <pre style={{fontFamily:"monospace",fontSize:12,lineHeight:1.85,whiteSpace:"pre-wrap",color:"var(--ink)",background:"var(--white)",borderRadius:7,padding:"10px 12px",border:`1px solid ${bd}`,marginBottom:10,wordBreak:"break-word"}}>{txt}</pre>
+      <button className="btn btn-sm" style={{background:fc,color:"#fff",border:"none"}} onClick={onCopy}>{copied?"✓ Copied!":"📋 Copy Message"}</button>
     </div>
   );
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GUEST — HOME
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function GuestHome({bookings, onBook, onAdmin}){
+/* ━━━━ GUEST HOME ━━━━ */
+function Home({bookings,onBook,onAdmin}){
   const [filter,setFilter]=useState("All");
   const [ci,setCI]=useState(""), [co,setCO]=useState("");
   const [searched,setSearched]=useState(false);
-  const [showTip,setShowTip]=useState(false);
   const td=today();
-
   const types=["All",...Array.from(new Set(ROOMS.map(r=>r.type)))];
+  const rooms=ROOMS.filter(r=>(filter==="All"||r.type===filter)&&(!searched||isAvail(r.id,ci,co,bookings)));
+  const bookedIds=new Set(searched&&ci&&co?ROOMS.filter(r=>!isAvail(r.id,ci,co,bookings)).map(r=>r.id):[]);
+  const n=nts(ci,co);
 
-  const rooms=ROOMS.filter(r=>{
-    const typeOk=filter==="All"||r.type===filter;
-    const availOk=!searched||isAvail(r.id,ci,co,bookings);
-    return typeOk&&availOk;
-  });
-
-  const bookedSet=new Set(searched&&ci&&co?ROOMS.filter(r=>!isAvail(r.id,ci,co,bookings)).map(r=>r.id):[]);
-
-  function doSearch(){
+  function search(){
     if(!ci){alert("Please select a check-in date.");return;}
     if(!co){alert("Please select a check-out date.");return;}
     if(co<=ci){alert("Check-out must be after check-in.");return;}
-    setSearched(true);setShowTip(false);
+    setSearched(true);
   }
-
-  const n=nights(ci,co);
 
   return(
     <div style={{minHeight:"100vh"}}>
       {/* Hero */}
       <div className="hero">
-        <button className="btn-white-ghost btn no-print" style={{position:"absolute",top:16,right:20}} onClick={onAdmin}>⚙ Admin</button>
-        <div style={{maxWidth:640,position:"relative",zIndex:1}}>
-          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.15)",borderRadius:99,padding:"5px 16px",marginBottom:20}}>
-            <span style={{color:"var(--mint)",fontSize:12,letterSpacing:"0.12em",fontWeight:600,textTransform:"uppercase"}}>Book Instantly · No Login</span>
+        <button className="btn btn-wg btn-sm noprint" style={{position:"absolute",top:14,right:14}} onClick={onAdmin}>⚙ Admin</button>
+        <div style={{maxWidth:600,position:"relative",zIndex:1}}>
+          <div style={{display:"inline-flex",alignItems:"center",gap:7,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.15)",borderRadius:99,padding:"5px 14px",marginBottom:18}}>
+            <span style={{color:"var(--mint)",fontSize:12,letterSpacing:".1em",fontWeight:600,textTransform:"uppercase"}}>Book Instantly · No Login</span>
           </div>
-          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(32px,6vw,56px)",fontWeight:600,lineHeight:1.1,marginBottom:14}}>{C.name}</h1>
-          <p style={{color:"rgba(255,255,255,.6)",fontSize:"clamp(14px,2vw,16px)",lineHeight:1.7,marginBottom:8}}>{C.tagline}</p>
-          <p style={{color:"rgba(255,255,255,.5)",fontSize:13}}>📍 {C.address}</p>
+          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(30px,7vw,52px)",fontWeight:600,lineHeight:1.1,marginBottom:12}}>{C.name}</h1>
+          <p style={{color:"rgba(255,255,255,.6)",fontSize:"clamp(13px,3.5vw,16px)",lineHeight:1.65,marginBottom:6}}>{C.tagline}</p>
+          <p style={{color:"rgba(255,255,255,.45)",fontSize:13}}>📍 {C.address}</p>
         </div>
       </div>
 
-      {/* Search card (floats over hero) */}
-      <div style={{padding:"0 18px"}}>
-        <div className="search-card">
-          <div className="label-xs" style={{marginBottom:14}}>Check Availability</div>
-          <div className="search-fields" style={{display:"flex",gap:14,alignItems:"flex-end",flexWrap:"wrap"}}>
-            <div className="field" style={{flex:1,minWidth:140}}>
-              <label className="label-xs">Check-In Date</label>
+      {/* Search card */}
+      <div style={{padding:"0 12px"}}>
+        <div className="scard">
+          <div className="lbl" style={{marginBottom:14}}>Check Availability</div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:10}} className="date2">
+            <div className="field">
+              <label className="lbl">Check-In</label>
               <input type="date" className="inp" min={td} value={ci} onChange={e=>{setCI(e.target.value);setSearched(false);}}/>
             </div>
-            <div className="field" style={{flex:1,minWidth:140}}>
-              <label className="label-xs">Check-Out Date</label>
+            <div className="field">
+              <label className="lbl">Check-Out</label>
               <input type="date" className="inp" min={ci||td} value={co} onChange={e=>{setCO(e.target.value);setSearched(false);}}/>
             </div>
-            <button className="btn btn-forest btn-md" style={{flexShrink:0,padding:"11px 24px"}} onClick={doSearch}>Search Rooms</button>
-            {searched&&<button className="btn btn-ghost btn-sm" onClick={()=>{setCI("");setCO("");setSearched(false);}}>Clear ✕</button>}
+          </div>
+          <div style={{display:"flex",gap:8}}>
+            <button className="btn btn-forest" style={{flex:1}} onClick={search}>Search Rooms</button>
+            {searched&&<button className="btn btn-ghost btn-sm" onClick={()=>{setCI("");setCO("");setSearched(false);}}>Clear</button>}
           </div>
           {searched&&ci&&co&&(
-            <div style={{marginTop:12,padding:"10px 14px",background:"var(--mint-pale)",borderRadius:8,fontSize:13,color:"var(--green)",fontWeight:500,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:6}}>
-              <span>✓ Showing <strong>{rooms.filter(r=>!bookedSet.has(r.id)).length}</strong> available room{rooms.filter(r=>!bookedSet.has(r.id)).length!==1?"s":""} for {fmtS(ci)} → {fmtS(co)} ({n} night{n!==1?"s":""})</span>
+            <div style={{marginTop:10,padding:"9px 12px",background:"var(--mint-pale)",borderRadius:8,fontSize:13,color:"var(--green)",fontWeight:500}}>
+              ✓ <strong>{rooms.filter(r=>!bookedIds.has(r.id)).length}</strong> available room{rooms.filter(r=>!bookedIds.has(r.id)).length!==1?"s":""} · {fmtS(ci)} → {fmtS(co)} · {n} night{n!==1?"s":""}
             </div>
           )}
         </div>
       </div>
 
-      {/* Room listing */}
-      <div style={{maxWidth:1140,margin:"0 auto",padding:"44px 18px 80px"}}>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20,flexWrap:"wrap",gap:12}}>
-          <div>
-            <h2 className="serif" style={{fontSize:30,fontWeight:600}}>Rooms &amp; Suites</h2>
-            <p style={{fontSize:13,color:"var(--mist)",marginTop:3}}>{ROOMS.length} room types · All with private bathroom</p>
-          </div>
-          <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-            {types.map(t=>(
-              <button key={t} className={`filter-pill ${filter===t?"on":""}`} onClick={()=>setFilter(t)}>{t}</button>
-            ))}
+      {/* Rooms */}
+      <div style={{maxWidth:1100,margin:"0 auto",padding:"32px 14px 100px"}}>
+        {/* Header + filters */}
+        <div style={{marginBottom:18}}>
+          <h2 className="serif" style={{fontSize:26,fontWeight:600,marginBottom:4}}>Rooms &amp; Suites</h2>
+          <p style={{fontSize:13,color:"var(--mist)",marginBottom:14}}>{ROOMS.length} room types · All with private bathroom</p>
+          <div style={{display:"flex",gap:8,flexWrap:"nowrap",overflowX:"auto",paddingBottom:4,WebkitOverflowScrolling:"touch"}}>
+            {types.map(t=><button key={t} className={`fpill ${filter===t?"on":""}`} onClick={()=>setFilter(t)}>{t}</button>)}
           </div>
         </div>
 
-        <div className="room-grid">
+        <div className="rgrid">
           {rooms.map((r,idx)=>{
-            const booked=bookedSet.has(r.id);
-            const tc=TYPE_COLORS[r.type];
+            const booked=bookedIds.has(r.id);
             return(
-              <div key={r.id} className={`room-card ${booked?"booked":""}`} style={{animationDelay:`${idx*.04}s`}}
+              <div key={r.id} className={`rcard ${booked?"booked":""}`} style={{animationDelay:`${idx*.03}s`}}
                 onClick={()=>!booked&&onBook(r,ci,co,searched)}>
-                {/* Visual header */}
-                <div style={{height:150,background:r.grad,position:"relative",display:"flex",flexDirection:"column",alignItems:"flex-start",justifyContent:"flex-end",padding:"12px 14px"}}>
-                  {booked&&<div style={{position:"absolute",top:10,right:10,background:"var(--red)",color:"#fff",fontSize:11,fontWeight:700,padding:"4px 10px",borderRadius:5,letterSpacing:"0.04em"}}>BOOKED</div>}
-                  <TypeBadge type={r.type}/>
+                <div style={{height:140,background:r.grad,position:"relative",display:"flex",alignItems:"flex-end",padding:"10px 12px"}}>
+                  {booked&&<div style={{position:"absolute",top:10,right:10,background:"var(--red)",color:"#fff",fontSize:11,fontWeight:700,padding:"3px 9px",borderRadius:5}}>BOOKED</div>}
+                  <TBadge type={r.type}/>
                 </div>
-                {/* Info */}
-                <div style={{padding:"16px 18px"}}>
-                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:6}}>
-                    <h3 className="serif" style={{fontSize:20,fontWeight:600,color:"var(--forest)"}}>{r.name}</h3>
+                <div style={{padding:"14px 16px"}}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:5}}>
+                    <h3 className="serif" style={{fontSize:19,fontWeight:600,color:"var(--forest)"}}>{r.name}</h3>
                     <div style={{textAlign:"right",flexShrink:0,marginLeft:8}}>
-                      <span className="serif" style={{fontSize:21,fontWeight:700,color:"var(--green)"}}>{peso(r.price)}</span>
+                      <span className="serif" style={{fontSize:20,fontWeight:700,color:"var(--green)"}}>{peso(r.price)}</span>
                       <span style={{fontSize:12,color:"var(--mist)"}}>/night</span>
                     </div>
                   </div>
-                  <div style={{display:"flex",gap:12,fontSize:12,color:"var(--stone)",marginBottom:10}}>
+                  <div style={{display:"flex",gap:10,fontSize:12,color:"var(--stone)",marginBottom:9}}>
                     <span>👥 Max {r.cap}</span>
                     <span>🛏 {r.beds}</span>
                   </div>
-                  <p style={{fontSize:13,color:"var(--mist)",lineHeight:1.65,marginBottom:14}}>{r.desc}</p>
+                  <p style={{fontSize:13,color:"var(--mist)",lineHeight:1.6,marginBottom:12}}>{r.desc}</p>
                   {searched&&!booked&&n>0&&(
-                    <div style={{background:"var(--mint-pale)",borderRadius:7,padding:"7px 12px",fontSize:13,color:"var(--green)",fontWeight:600,marginBottom:12}}>
-                      {n}N total: {peso(r.price*n)} · DP: {peso(Math.ceil(r.price*n*C.dpRate))}
+                    <div style={{background:"var(--mint-pale)",borderRadius:7,padding:"7px 10px",fontSize:13,color:"var(--green)",fontWeight:600,marginBottom:10}}>
+                      {n}N · Total {peso(r.price*n)} · DP {peso(Math.ceil(r.price*n*C.dpRate))}
                     </div>
                   )}
-                  <button className="btn btn-forest btn-md" style={{width:"100%",fontSize:14}} disabled={booked}>
-                    {booked?"Not Available for Selected Dates":"Reserve This Room →"}
+                  <button className="btn btn-forest" style={{width:"100%"}} disabled={booked}>
+                    {booked?"Not Available":"Reserve This Room →"}
                   </button>
                 </div>
               </div>
@@ -743,24 +670,21 @@ function GuestHome({bookings, onBook, onAdmin}){
           })}
         </div>
 
-        {/* Info box */}
-        <div style={{marginTop:44,background:"var(--white)",borderRadius:"14px",border:"1.5px solid var(--linen)",padding:"24px 28px",display:"flex",gap:16,alignItems:"flex-start"}}>
-          <div style={{fontSize:26,flexShrink:0}}>ℹ️</div>
-          <div>
-            <div style={{fontWeight:700,fontSize:15,marginBottom:8,color:"var(--forest)"}}>How Booking Works</div>
-            <ol style={{fontSize:14,color:"var(--bark)",lineHeight:2,paddingLeft:18}}>
-              <li>Select your room and pick your check-in / check-out dates.</li>
-              <li>Fill in your name, phone number, and number of guests.</li>
-              <li>Pay <strong>50% downpayment</strong> via GCash, Maya, or bank transfer.</li>
-              <li>You receive a <strong>booking reference number</strong> instantly.</li>
-              <li>Send your payment screenshot + reference to <strong>{C.phone}</strong>.</li>
-              <li>We verify and send a <strong>confirmation message</strong> within 1–2 hours.</li>
-            </ol>
-          </div>
+        {/* How it works */}
+        <div style={{marginTop:36,background:"var(--white)",borderRadius:14,border:"1.5px solid var(--linen)",padding:"20px"}}>
+          <div style={{fontWeight:700,fontSize:15,marginBottom:10,color:"var(--forest)"}}>ℹ️ How Booking Works</div>
+          <ol style={{fontSize:14,color:"var(--bark)",lineHeight:2.1,paddingLeft:18}}>
+            <li>Pick your room and select check-in / check-out dates.</li>
+            <li>Enter your name, phone, and number of guests.</li>
+            <li>Pay <strong>50% downpayment</strong> via GCash, Maya, or bank transfer.</li>
+            <li>Get your <strong>booking reference</strong> instantly.</li>
+            <li>Send payment screenshot + reference to <strong>{C.phone}</strong>.</li>
+            <li>We verify and send a <strong>confirmation</strong> within 1–2 hours.</li>
+          </ol>
         </div>
 
-        {/* Footer strip */}
-        <div style={{marginTop:28,display:"flex",gap:20,flexWrap:"wrap",fontSize:13,color:"var(--stone)",justifyContent:"center",textAlign:"center"}}>
+        {/* Footer */}
+        <div style={{marginTop:20,display:"flex",gap:12,flexWrap:"wrap",fontSize:13,color:"var(--stone)",justifyContent:"center",textAlign:"center"}}>
           <span>📍 {C.address}</span>
           <span>📞 {C.phone}</span>
           <span>📘 {C.fb}</span>
@@ -771,140 +695,138 @@ function GuestHome({bookings, onBook, onAdmin}){
   );
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GUEST — BOOKING FORM
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function BookingForm({room, initCI, initCO, bookings, onBack, onNext}){
+/* ━━━━ BOOKING FORM ━━━━ */
+function BookForm({room,initCI,initCO,bookings,onBack,onNext}){
   const td=today();
   const [ci,setCI]=useState(initCI||""), [co,setCO]=useState(initCO||"");
   const [name,setName]=useState(""), [phone,setPhone]=useState(""), [email,setEmail]=useState("");
   const [guests,setGuests]=useState(1), [notes,setNotes]=useState("");
   const [errs,setErrs]=useState({}), [availErr,setAvailErr]=useState("");
-  const n=nights(ci,co), total=room.price*n, dp=Math.ceil(total*C.dpRate);
+  const n=nts(ci,co), total=room.price*n, dp=Math.ceil(total*C.dpRate);
 
-  function blur(k,val){
+  function onBlur(k,val){
     const e={...errs};
-    if(k==="name"&&!val.trim())e.name="Required";else if(k==="name")delete e.name;
-    if(k==="phone"&&!val.trim())e.phone="Required";
-    else if(k==="phone"&&!/^(\+63|0)\d{9,10}$/.test(val.replace(/[\s\-]/g,"")))e.phone="Enter a valid PH number (09XXXXXXXXX)";
-    else if(k==="phone")delete e.phone;
+    if(k==="name"){if(!val.trim())e.name="Required";else delete e.name;}
+    if(k==="phone"){
+      if(!val.trim())e.phone="Required";
+      else if(!/^(\+63|0)\d{9,10}$/.test(val.replace(/[\s\-]/g,"")))e.phone="Enter valid PH number (09XXXXXXXXX)";
+      else delete e.phone;
+    }
     setErrs(e);
   }
 
   function validate(){
     const e={};
-    if(!ci)e.ci="Required";
-    if(!co)e.co="Required"; else if(co<=ci)e.co="Must be after check-in";
+    if(!ci)e.ci="Select check-in date";
+    if(!co)e.co="Select check-out date";
+    else if(co<=ci)e.co="Must be after check-in";
     if(!n||n<1)e.co="Select valid dates";
     if(!name.trim())e.name="Required";
     if(!phone.trim())e.phone="Required";
-    else if(!/^(\+63|0)\d{9,10}$/.test(phone.replace(/[\s\-]/g,"")))e.phone="Enter a valid PH number (09XXXXXXXXX)";
-    if(guests<1||guests>room.cap)e.guests=`Between 1 and ${room.cap}`;
+    else if(!/^(\+63|0)\d{9,10}$/.test(phone.replace(/[\s\-]/g,"")))e.phone="Enter valid PH number (09XXXXXXXXX)";
+    if(guests<1||guests>room.cap)e.guests=`1 to ${room.cap} guests`;
     setErrs(e);return Object.keys(e).length===0;
   }
 
   function submit(){
-    if(!validate())return;
+    if(!validate()){window.scrollTo(0,0);return;}
     if(!isAvail(room.id,ci,co,bookings)){
-      setAvailErr("Sorry, this room is no longer available for the selected dates. Please try different dates or choose another room.");
-      return;
+      setAvailErr("This room is no longer available for those dates. Please choose different dates.");
+      window.scrollTo(0,0);return;
     }
     setAvailErr("");
     onNext({room,ci,co,n,total,dp,name,phone,email,guests,notes});
   }
 
   return(
-    <div style={{minHeight:"100vh",background:"var(--ivory)"}}>
-      <div className="topbar"><div style={{display:"flex",alignItems:"center",gap:12}}><button className="btn btn-sm btn-white-ghost" onClick={onBack}>← Back</button><span className="serif" style={{color:"#fff",fontSize:18}}>{C.name}</span></div></div>
-      <div style={{maxWidth:780,margin:"32px auto",padding:"0 18px 80px"}}>
+    <div style={{minHeight:"100vh",background:"var(--ivory)",paddingBottom:80}}>
+      <Bar back={onBack}/>
+      <div style={{maxWidth:760,margin:"0 auto",padding:"20px 14px 0"}}>
         <StepBar step={1}/>
-        {availErr&&<div style={{background:"var(--red-pale)",border:"1.5px solid #fca5a5",borderRadius:10,padding:"13px 16px",marginBottom:18,fontSize:14,color:"#8a1515",display:"flex",gap:10,alignItems:"flex-start"}}>⚠️ {availErr}</div>}
-        <div style={{display:"grid",gridTemplateColumns:"1fr 290px",gap:22,alignItems:"start"}} className="booking-grid">
-          {/* Left */}
-          <div style={{display:"flex",flexDirection:"column",gap:18}}>
+        {availErr&&<div style={{background:"var(--red-pale)",border:"1.5px solid #fca5a5",borderRadius:10,padding:"12px 14px",marginBottom:16,fontSize:14,color:"#8a1515"}}>⚠️ {availErr}</div>}
+
+        <div className="bkgrid">
+          {/* LEFT */}
+          <div style={{display:"flex",flexDirection:"column",gap:16}}>
             <div>
-              <h2 className="serif" style={{fontSize:28,fontWeight:600,marginBottom:4}}>Your Booking</h2>
+              <h2 className="serif" style={{fontSize:26,fontWeight:600,marginBottom:3}}>Your Booking</h2>
               <p style={{color:"var(--mist)",fontSize:14}}>Reserving <strong style={{color:"var(--forest)"}}>{room.name}</strong></p>
             </div>
 
             {/* Dates */}
             <div className="panel">
-              <div className="label-xs" style={{marginBottom:14}}>Stay Dates</div>
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
+              <div className="lbl" style={{marginBottom:12}}>Stay Dates</div>
+              <div className="date2" style={{marginBottom:12}}>
                 <div className="field">
-                  <label className="label-xs">Check-In *</label>
+                  <label className="lbl">Check-In *</label>
                   <input type="date" className={`inp ${errs.ci?"err":""}`} min={td} value={ci} onChange={e=>{setCI(e.target.value);setErrs(p=>({...p,ci:""}));}}/>
                   {errs.ci&&<span className="err-msg">{errs.ci}</span>}
                 </div>
                 <div className="field">
-                  <label className="label-xs">Check-Out *</label>
+                  <label className="lbl">Check-Out *</label>
                   <input type="date" className={`inp ${errs.co?"err":""}`} min={ci||td} value={co} onChange={e=>{setCO(e.target.value);setErrs(p=>({...p,co:""}));}}/>
                   {errs.co&&<span className="err-msg">{errs.co}</span>}
                 </div>
               </div>
-              {n>0&&(
-                <div style={{marginTop:12,background:"var(--mint-pale)",borderRadius:8,padding:"10px 14px",fontSize:14,color:"var(--green)",fontWeight:600}}>
-                  🌙 {n} night{n>1?"s":""} · Total {peso(total)} · Downpayment {peso(dp)}
-                </div>
-              )}
+              {n>0&&<div style={{background:"var(--mint-pale)",borderRadius:8,padding:"10px 12px",fontSize:14,color:"var(--green)",fontWeight:600}}>🌙 {n} night{n>1?"s":""} · Total {peso(total)} · DP {peso(dp)}</div>}
             </div>
 
-            {/* Guest */}
+            {/* Guest info */}
             <div className="panel">
-              <div className="label-xs" style={{marginBottom:14}}>Guest Information</div>
+              <div className="lbl" style={{marginBottom:12}}>Guest Information</div>
               <div style={{display:"flex",flexDirection:"column",gap:14}}>
                 <div className="field">
-                  <label className="label-xs">Full Name *</label>
-                  <input className={`inp ${errs.name?"err":""}`} placeholder="e.g. Maria Dela Cruz" value={name} onChange={e=>setName(e.target.value)} onBlur={e=>blur("name",e.target.value)}/>
+                  <label className="lbl">Full Name *</label>
+                  <input className={`inp ${errs.name?"err":""}`} placeholder="e.g. Maria Dela Cruz" value={name} onChange={e=>setName(e.target.value)} onBlur={e=>onBlur("name",e.target.value)}/>
                   {errs.name&&<span className="err-msg">{errs.name}</span>}
                 </div>
-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
+                <div className="pe2">
                   <div className="field">
-                    <label className="label-xs">Phone Number *</label>
-                    <input className={`inp ${errs.phone?"err":""}`} placeholder="09XXXXXXXXX" type="tel" value={phone} onChange={e=>setPhone(e.target.value)} onBlur={e=>blur("phone",e.target.value)}/>
+                    <label className="lbl">Phone Number *</label>
+                    <input className={`inp ${errs.phone?"err":""}`} placeholder="09XXXXXXXXX" type="tel" value={phone} onChange={e=>setPhone(e.target.value)} onBlur={e=>onBlur("phone",e.target.value)}/>
                     {errs.phone&&<span className="err-msg">{errs.phone}</span>}
                   </div>
                   <div className="field">
-                    <label className="label-xs">Email <span style={{fontWeight:300,textTransform:"none",letterSpacing:0,color:"var(--stone)"}}>· optional</span></label>
+                    <label className="lbl">Email <span style={{fontWeight:400,textTransform:"none",letterSpacing:0,color:"var(--stone)"}}>· optional</span></label>
                     <input className="inp" placeholder="for receipt" type="email" value={email} onChange={e=>setEmail(e.target.value)}/>
                   </div>
                 </div>
-                <div className="field" style={{maxWidth:190}}>
-                  <label className="label-xs">Number of Guests *</label>
+                <div className="field" style={{maxWidth:200}}>
+                  <label className="lbl">Number of Guests *</label>
                   <select className={`inp ${errs.guests?"err":""}`} value={guests} onChange={e=>setGuests(Number(e.target.value))}>
                     {Array.from({length:room.cap},(_,i)=>i+1).map(x=><option key={x} value={x}>{x} {x===1?"Guest":"Guests"}</option>)}
                   </select>
                   {errs.guests&&<span className="err-msg">{errs.guests}</span>}
                 </div>
                 <div className="field">
-                  <label className="label-xs">Special Requests <span style={{fontWeight:300,textTransform:"none",letterSpacing:0,color:"var(--stone)"}}>· optional</span></label>
-                  <textarea className="inp" placeholder="Any special arrangements, requests, or notes for us…" value={notes} onChange={e=>setNotes(e.target.value)}/>
+                  <label className="lbl">Special Requests <span style={{fontWeight:400,textTransform:"none",letterSpacing:0,color:"var(--stone)"}}>· optional</span></label>
+                  <textarea className="inp" placeholder="Any special arrangements or requests…" value={notes} onChange={e=>setNotes(e.target.value)}/>
                 </div>
               </div>
             </div>
 
-            <button className="btn btn-forest btn-lg no-print" style={{width:"100%",justifyContent:"center"}} onClick={submit}>Continue to Payment →</button>
+            <button className="btn btn-forest btn-lg noprint" style={{width:"100%",justifyContent:"center"}} onClick={submit}>Continue to Payment →</button>
           </div>
 
-          {/* Room summary card */}
-          <div style={{position:"sticky",top:76}}>
+          {/* RIGHT — room summary (hides on mobile via bkgrid collapse) */}
+          <div style={{position:"sticky",top:64}}>
             <div className="card">
-              <div style={{height:120,background:room.grad,display:"flex",alignItems:"flex-end",padding:"12px 14px"}}>
-                <TypeBadge type={room.type}/>
+              <div style={{height:110,background:room.grad,display:"flex",alignItems:"flex-end",padding:"10px 14px"}}>
+                <TBadge type={room.type}/>
               </div>
-              <div style={{padding:"18px"}}>
-                <h3 className="serif" style={{fontSize:20,fontWeight:600,marginBottom:4,color:"var(--forest)"}}>{room.name}</h3>
-                <div style={{fontSize:12,color:"var(--stone)",marginBottom:10}}>👥 Max {room.cap} · 🛏 {room.beds}</div>
-                <p style={{fontSize:12,color:"var(--mist)",lineHeight:1.65,marginBottom:14}}>{room.desc}</p>
-                <div style={{borderTop:"1px solid var(--linen)",paddingTop:12}}>
+              <div style={{padding:"16px"}}>
+                <h3 className="serif" style={{fontSize:19,fontWeight:600,marginBottom:3,color:"var(--forest)"}}>{room.name}</h3>
+                <div style={{fontSize:12,color:"var(--stone)",marginBottom:8}}>👥 Max {room.cap} · 🛏 {room.beds}</div>
+                <p style={{fontSize:12,color:"var(--mist)",lineHeight:1.6,marginBottom:12}}>{room.desc}</p>
+                <div style={{borderTop:"1px solid var(--linen)",paddingTop:10}}>
                   {[
-                    ["Rate per night", peso(room.price)],
-                    n>0&&["Duration", `${n} night${n>1?"s":""}`],
-                    n>0&&["Total", peso(total)],
-                    n>0&&["Downpayment (50%)", <strong style={{color:"var(--green)"}}>{peso(dp)}</strong>],
-                    n>0&&["Balance on arrival", peso(total-dp)],
+                    ["Rate",`${peso(room.price)}/night`],
+                    n>0&&["Nights",`${n}`],
+                    n>0&&["Total",peso(total)],
+                    n>0&&["Downpayment (50%)",<strong style={{color:"var(--green)"}}>{peso(dp)}</strong>],
+                    n>0&&["Balance on arrival",peso(total-dp)],
                   ].filter(Boolean).map(([k,v])=>(
-                    <div key={k} className="info-row" style={{fontSize:13}}>
+                    <div key={k} className="irow" style={{fontSize:13}}>
                       <span style={{color:"var(--mist)"}}>{k}</span>
                       <span style={{fontWeight:500}}>{v}</span>
                     </div>
@@ -915,82 +837,71 @@ function BookingForm({room, initCI, initCO, bookings, onBack, onNext}){
           </div>
         </div>
       </div>
-      {/* Mobile sticky CTA */}
-      <div className="sticky-cta no-print">
-        {n>0&&<div style={{flex:1,fontSize:13}}><div style={{fontWeight:700,color:"var(--green)"}}>{peso(dp)} downpayment</div><div style={{color:"var(--mist)",fontSize:12}}>{n}N · {peso(total)} total</div></div>}
-        <button className="btn btn-forest btn-md" onClick={submit}>Continue →</button>
+
+      {/* Sticky mobile bottom bar */}
+      <div className="stickybar noprint">
+        <div style={{flex:1}}>
+          {n>0?<><div style={{fontWeight:700,color:"var(--green)",fontSize:15}}>{peso(dp)} downpayment</div><div style={{color:"var(--mist)",fontSize:12}}>{n}N · {peso(total)} total</div></>:<div style={{color:"var(--mist)",fontSize:14}}>Select dates to see pricing</div>}
+        </div>
+        <button className="btn btn-forest" onClick={submit}>Continue →</button>
       </div>
     </div>
   );
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GUEST — PAYMENT
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function PaymentStep({data, onBack, onConfirm}){
-  const {room,ci,co,n,total,dp,name,phone,email,guests,notes}=data;
+/* ━━━━ PAYMENT ━━━━ */
+function PayStep({data,onBack,onConfirm}){
+  const {room,ci,co,n,total,dp,name,phone}=data;
   const [method,setMethod]=useState("gcash");
   const [loading,setLoading]=useState(false);
-
-  function confirm(){setLoading(true);setTimeout(()=>onConfirm(method),1300);}
-
+  function confirm(){setLoading(true);setTimeout(()=>onConfirm(method),1200);}
   const METHODS=[
     {id:"gcash",icon:"💙",label:"GCash",detail:`${C.gcashNum} · ${C.gcashName}`},
-    {id:"maya",icon:"💚",label:"Maya",detail:`${C.mayaNum}`},
-    {id:"bank",icon:"🏦",label:`Bank Transfer · ${C.bankName}`,detail:`${C.bankAcct} · ${C.bankHolder}`},
+    {id:"maya", icon:"💚",label:"Maya", detail:`${C.mayaNum}`},
+    {id:"bank", icon:"🏦",label:`Bank · ${C.bankName}`,detail:`${C.bankAcct} · ${C.bankHolder}`},
   ];
-
   return(
-    <div style={{minHeight:"100vh",background:"var(--ivory)"}}>
-      <div className="topbar"><div style={{display:"flex",alignItems:"center",gap:12}}><button className="btn btn-sm btn-white-ghost" onClick={onBack}>← Back</button><span className="serif" style={{color:"#fff",fontSize:18}}>{C.name}</span></div></div>
-      <div style={{maxWidth:580,margin:"32px auto",padding:"0 18px 80px"}}>
+    <div style={{minHeight:"100vh",background:"var(--ivory)",paddingBottom:20}}>
+      <Bar back={onBack}/>
+      <div style={{maxWidth:560,margin:"0 auto",padding:"20px 14px 40px"}}>
         <StepBar step={2}/>
-        <h2 className="serif" style={{fontSize:28,fontWeight:600,marginBottom:6}}>Confirm &amp; Pay</h2>
-        <p style={{color:"var(--mist)",fontSize:14,marginBottom:24}}>Review your booking, then pay the 50% downpayment to secure your room. The remaining balance is collected upon arrival.</p>
+        <h2 className="serif" style={{fontSize:26,fontWeight:600,marginBottom:5}}>Confirm &amp; Pay</h2>
+        <p style={{color:"var(--mist)",fontSize:14,marginBottom:20}}>Review your booking, then pay the 50% downpayment to secure your room. Balance is collected on arrival.</p>
 
-        {/* Summary */}
-        <div className="panel" style={{marginBottom:18}}>
-          <div className="label-xs" style={{marginBottom:14}}>Booking Summary</div>
-          {[
-            ["Room", room.name],["Guest Name", name],["Phone", phone],
-            [`${n} Night${n>1?"s":""} × ${peso(room.price)}`, peso(total)],
-            ["Check-In", `${fmtD(ci)} · ${C.checkIn}`],
-            ["Check-Out", `${fmtD(co)} · ${C.checkOut}`],
-          ].map(([k,v])=>(
-            <div key={k} className="info-row" style={{fontSize:14}}>
-              <span style={{color:"var(--mist)"}}>{k}</span><span style={{fontWeight:500}}>{v}</span>
-            </div>
+        <div className="panel" style={{marginBottom:16}}>
+          <div className="lbl" style={{marginBottom:12}}>Booking Summary</div>
+          {[["Room",room.name],["Guest",name],["Phone",phone],[`${n} Night${n>1?"s":""} × ${peso(room.price)}`,peso(total)],["Check-In",`${fmtD(ci)} · ${C.checkIn}`],["Check-Out",`${fmtD(co)} · ${C.checkOut}`]].map(([k,v])=>(
+            <div key={k} className="irow"><span style={{color:"var(--mist)"}}>{k}</span><span style={{fontWeight:500}}>{v}</span></div>
           ))}
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",paddingTop:14,marginTop:4,borderTop:"2px solid var(--linen)"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",paddingTop:12,marginTop:4,borderTop:"2px solid var(--linen)"}}>
             <span style={{fontWeight:700,fontSize:15}}>Downpayment Due (50%)</span>
-            <span className="serif" style={{fontSize:30,fontWeight:700,color:"var(--green)"}}>{peso(dp)}</span>
+            <span className="serif" style={{fontSize:28,fontWeight:700,color:"var(--green)"}}>{peso(dp)}</span>
           </div>
           <div style={{textAlign:"right",fontSize:12,color:"var(--stone)",marginTop:2}}>Balance on arrival: {peso(total-dp)}</div>
         </div>
 
-        {/* Payment method */}
-        <div className="panel" style={{marginBottom:18}}>
-          <div className="label-xs" style={{marginBottom:14}}>Payment Method</div>
+        <div className="panel" style={{marginBottom:16}}>
+          <div className="lbl" style={{marginBottom:12}}>Payment Method</div>
           <div style={{display:"flex",flexDirection:"column",gap:10}}>
             {METHODS.map(m=>(
-              <div key={m.id} className={`pay-opt ${method===m.id?"on":""}`} onClick={()=>setMethod(m.id)}>
+              <div key={m.id} className={`popt ${method===m.id?"on":""}`} onClick={()=>setMethod(m.id)}>
                 <span style={{fontSize:24,lineHeight:1}}>{m.icon}</span>
                 <div style={{flex:1}}>
                   <div style={{fontWeight:600,fontSize:14}}>{m.label}</div>
                   <div style={{fontSize:12,color:"var(--mist)",marginTop:1}}>{m.detail}</div>
                 </div>
-                <div className="pay-radio">{method===m.id&&<span style={{color:"#fff",fontSize:10,fontWeight:900}}>✓</span>}</div>
+                <div className="pradio">{method===m.id&&<span style={{color:"#fff",fontSize:10,fontWeight:900}}>✓</span>}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <div style={{background:"var(--yellow-pale)",border:"1px solid var(--yellow-border)",borderRadius:10,padding:"14px 18px",marginBottom:22,fontSize:14,color:"var(--bark)",lineHeight:1.75}}>
-          📲 <strong>After confirming:</strong> Send your {METHODS.find(m=>m.id===method).label} payment screenshot to <strong>{C.phone}</strong> with your booking reference. We'll verify and send you a confirmation within <strong>1–2 hours</strong>.
+        <div style={{background:"var(--yellow-pale)",border:"1px solid var(--yellow-b)",borderRadius:10,padding:"13px 16px",marginBottom:20,fontSize:14,color:"var(--bark)",lineHeight:1.75}}>
+          📲 After confirming, send your {METHODS.find(m=>m.id===method).label} payment screenshot to <strong>{C.phone}</strong> with your booking reference. We'll verify within <strong>1–2 hours</strong>.
         </div>
 
         <button className="btn btn-gold btn-lg" style={{width:"100%",justifyContent:"center"}} onClick={confirm} disabled={loading}>
-          {loading?<><span className="spinner"/>Processing…</>:`Confirm Booking & Pay ${peso(dp)}`}
+          {loading?<><span className="spinner"/>Processing…</>:`Confirm & Pay ${peso(dp)}`}
         </button>
         <p style={{textAlign:"center",fontSize:12,color:"var(--stone)",marginTop:12}}>By confirming you agree to our cancellation and refund policy.</p>
       </div>
@@ -998,75 +909,68 @@ function PaymentStep({data, onBack, onConfirm}){
   );
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GUEST — CONFIRMATION
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function Confirmation({booking:b, onReset}){
+/* ━━━━ CONFIRMATION ━━━━ */
+function Confirmed({bk,onReset}){
   const [copied,setCopied]=useState(false);
-  const bal=b.total-b.downpayment;
-  function copyRef(){navigator.clipboard.writeText(b.ref).then(()=>{setCopied(true);setTimeout(()=>setCopied(false),2000);});}
+  const bal=bk.total-bk.downpayment;
+  function copyRef(){navigator.clipboard.writeText(bk.ref).then(()=>{setCopied(true);setTimeout(()=>setCopied(false),2000);});}
   return(
     <div style={{minHeight:"100vh",background:"var(--ivory)"}}>
-      <div className="topbar no-print"><span className="serif" style={{color:"#fff",fontSize:18,margin:"0 auto"}}>{C.name}</span></div>
-      <div style={{maxWidth:600,margin:"32px auto",padding:"0 18px 60px"}}>
+      <div className="topbar noprint"><span className="serif" style={{color:"#fff",fontSize:17,margin:"0 auto"}}>{C.name}</span></div>
+      <div style={{maxWidth:580,margin:"0 auto",padding:"20px 14px 40px"}}>
         <StepBar step={3}/>
-        <div className="card anim-up" style={{borderRadius:20,overflow:"hidden"}}>
+        <div className="card anim" style={{borderRadius:20,overflow:"hidden"}}>
           {/* Header */}
-          <div style={{background:"var(--forest)",padding:"28px 24px",textAlign:"center"}}>
-            <div style={{width:66,height:66,background:"rgba(255,255,255,.12)",borderRadius:18,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 14px",fontSize:32}}>🎉</div>
-            <h2 className="serif" style={{color:"#fff",fontSize:28,fontWeight:600,marginBottom:6}}>Booking Received!</h2>
-            <p style={{color:"rgba(255,255,255,.6)",fontSize:14}}>Pending payment verification · 1–2 hour turnaround</p>
+          <div style={{background:"var(--forest)",padding:"26px 22px",textAlign:"center"}}>
+            <div style={{width:62,height:62,background:"rgba(255,255,255,.12)",borderRadius:18,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 12px",fontSize:30}}>🎉</div>
+            <h2 className="serif" style={{color:"#fff",fontSize:26,fontWeight:600,marginBottom:5}}>Booking Received!</h2>
+            <p style={{color:"rgba(255,255,255,.6)",fontSize:14}}>Pending payment verification · 1–2 hr turnaround</p>
           </div>
 
           {/* Reference */}
-          <div style={{background:"var(--mint-pale)",padding:"20px 24px",textAlign:"center",borderBottom:"2px dashed var(--mint)"}}>
-            <div className="label-xs" style={{marginBottom:8}}>Your Booking Reference</div>
-            <div className="serif" style={{fontSize:34,fontWeight:700,color:"var(--forest)",letterSpacing:"0.1em",marginBottom:8}}>{b.ref}</div>
-            <button className="btn btn-outline btn-sm" onClick={copyRef} style={{fontSize:12}}>
-              {copied?"✓ Copied!":"📋 Copy Reference"}
-            </button>
-            <div style={{fontSize:12,color:"var(--mist)",marginTop:8}}>📸 Screenshot or note this reference number</div>
+          <div style={{background:"var(--mint-pale)",padding:"18px 20px",textAlign:"center",borderBottom:"2px dashed var(--mint)"}}>
+            <div className="lbl" style={{marginBottom:7}}>Your Booking Reference</div>
+            <div className="serif" style={{fontSize:32,fontWeight:700,color:"var(--forest)",letterSpacing:".1em",marginBottom:10}}>{bk.ref}</div>
+            <button className="btn btn-outline btn-sm" onClick={copyRef}>{copied?"✓ Copied!":"📋 Copy Reference"}</button>
+            <p style={{fontSize:12,color:"var(--mist)",marginTop:8}}>📸 Screenshot this number</p>
           </div>
 
           {/* Details */}
-          <div style={{padding:"22px 24px"}}>
-            <div className="label-xs" style={{marginBottom:14}}>Reservation Details</div>
+          <div style={{padding:"18px 20px"}}>
+            <div className="lbl" style={{marginBottom:12}}>Reservation Details</div>
             {[
-              ["Room", b.roomName],
-              ["Guest", b.name],
-              ["Phone", b.phone],
-              ["Guests", `${b.guests} person(s)`],
-              ["Check-In", `${fmtD(b.checkIn)} · ${C.checkIn}`],
-              ["Check-Out", `${fmtD(b.checkOut)} · ${C.checkOut}`],
-              ["Duration", `${b.n} night${b.n>1?"s":""}`],
-              ["Total Amount", peso(b.total)],
-              ["Downpayment Paid", peso(b.downpayment)],
-              ["Balance on Arrival", peso(bal)],
-              ["Payment Via", (b.payMethod||"").toUpperCase()],
-              ["Status", "⏳ Pending Verification"],
+              ["Room",bk.roomName],["Guest",bk.name],["Phone",bk.phone],
+              ["Guests",`${bk.guests} person(s)`],
+              ["Check-In",`${fmtD(bk.checkIn)} · ${C.checkIn}`],
+              ["Check-Out",`${fmtD(bk.checkOut)} · ${C.checkOut}`],
+              ["Duration",`${bk.n} night${bk.n>1?"s":""}`],
+              ["Total Amount",peso(bk.total)],
+              ["Downpayment",peso(bk.downpayment)],
+              ["Balance on Arrival",peso(bal)],
+              ["Payment Via",(bk.payMethod||"").toUpperCase()],
+              ["Status","⏳ Pending Verification"],
             ].map(([k,v])=>(
-              <div key={k} className="info-row">
+              <div key={k} className="irow">
                 <span style={{color:"var(--mist)",fontSize:13}}>{k}</span>
                 <span style={{fontWeight:500,fontSize:13,textAlign:"right"}}>{v}</span>
               </div>
             ))}
           </div>
 
-          {/* Next step instruction */}
-          <div style={{background:"var(--blue-pale)",borderTop:"1.5px solid #93c5fd",padding:"16px 24px"}}>
+          {/* Instruction */}
+          <div style={{background:"var(--blue-pale)",borderTop:"1.5px solid #93c5fd",padding:"14px 20px"}}>
             <div style={{fontSize:14,color:"#1a3a8a",lineHeight:1.75}}>
-              📲 Send your <strong>{(b.payMethod||"").toUpperCase()}</strong> payment screenshot with reference <strong>{b.ref}</strong> to <strong>{C.phone}</strong> on Viber or Facebook. We'll send you a confirmation once verified.
+              📲 Send your <strong>{(bk.payMethod||"").toUpperCase()}</strong> screenshot + reference <strong>{bk.ref}</strong> to <strong>{C.phone}</strong> on Viber or Facebook to complete your reservation.
             </div>
           </div>
 
           {/* Actions */}
-          <div style={{padding:"18px 24px",display:"flex",gap:10,flexWrap:"wrap"}}>
-            <button className="btn btn-forest btn-md no-print" style={{flex:1}} onClick={onReset}>Book Another Room</button>
-            <button className="btn btn-ghost btn-md no-print" style={{flex:1}} onClick={()=>window.print()}>🖨 Print / Save</button>
+          <div style={{padding:"16px 20px",display:"flex",gap:10}}>
+            <button className="btn btn-forest noprint" style={{flex:1}} onClick={onReset}>Book Another</button>
+            <button className="btn btn-ghost noprint" style={{flex:1}} onClick={()=>window.print()}>🖨 Print</button>
           </div>
         </div>
-
-        <p style={{textAlign:"center",fontSize:12,color:"var(--stone)",marginTop:20,lineHeight:1.7}}>
+        <p style={{textAlign:"center",fontSize:12,color:"var(--stone)",marginTop:16,lineHeight:1.7}}>
           {C.name} · {C.address}<br/>{C.phone} · {C.fb}
         </p>
       </div>
@@ -1074,36 +978,32 @@ function Confirmation({booking:b, onReset}){
   );
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ROOT APP
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ━━━━ ROOT APP ━━━━ */
 function App(){
-  const [view,setView]=useState("guest"); // guest | admin-login | admin
-  const [step,setStep]=useState("home"); // home | form | pay | confirm
+  const [view,setView]=useState("guest");
+  const [step,setStep]=useState("home");
   const [bookings,setBookings]=useState([]);
   const [loading,setLoading]=useState(true);
-
-  // booking session
-  const [room,setRoom]=useState(null);
+  const [selRoom,setSelRoom]=useState(null);
   const [initCI,setInitCI]=useState(""), [initCO,setInitCO]=useState("");
   const [formData,setFormData]=useState(null);
   const [finalBk,setFinalBk]=useState(null);
 
-  useEffect(()=>{ setBookings(DB.load()); setLoading(false); },[]);
+  useEffect(()=>{setBookings(DB.load());setLoading(false);},[]);
 
-  function persist(list){ setBookings(list); DB.save(list); }
-  function handleUpdate(upd){ persist(bookings.map(b=>b.ref===upd.ref?upd:b)); }
-  function handleDelete(ref){ persist(bookings.filter(b=>b.ref!==ref)); }
+  function persist(list){setBookings(list);DB.save(list);}
+  function handleUpdate(u){persist(bookings.map(b=>b.ref===u.ref?u:b));}
+  function handleDelete(ref){persist(bookings.filter(b=>b.ref!==ref));}
 
   function handleBook(r,ci,co,datesSet){
-    setRoom(r);
+    setSelRoom(r);
     setInitCI(datesSet&&ci?ci:"");
     setInitCO(datesSet&&co?co:"");
     setStep("form");
     window.scrollTo(0,0);
   }
 
-  function handleFormNext(data){ setFormData(data); setStep("pay"); window.scrollTo(0,0); }
+  function handleFormNext(data){setFormData(data);setStep("pay");window.scrollTo(0,0);}
 
   function handleConfirm(method){
     const ref=genRef();
@@ -1113,9 +1013,8 @@ function App(){
       total:formData.total, downpayment:formData.dp, payMethod:method,
       name:formData.name, phone:formData.phone, email:formData.email||"",
       guests:formData.guests, guestNotes:formData.notes||"",
-      // flattened guest fields for admin panel
-      guestName:formData.name, guestPhone:formData.phone, guestEmail:formData.email||"",
-      guestGuests:formData.guests,
+      guestName:formData.name, guestPhone:formData.phone,
+      guestEmail:formData.email||"", guestGuests:formData.guests,
       status:"pending_verification", createdAt:new Date().toISOString(),
     };
     const updated=[...bookings,bk];
@@ -1125,1109 +1024,24 @@ function App(){
     window.scrollTo(0,0);
   }
 
-  function reset(){ setStep("home"); setRoom(null); setFormData(null); setFinalBk(null); setInitCI(""); setInitCO(""); window.scrollTo(0,0); }
+  function reset(){setStep("home");setSelRoom(null);setFormData(null);setFinalBk(null);setInitCI("");setInitCO("");window.scrollTo(0,0);}
 
-  if(loading) return(
-    <div style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",background:"var(--ivory)",flexDirection:"column",gap:14}}>
-      <div style={{width:40,height:40,border:"3px solid var(--mint)",borderTopColor:"var(--green)",borderRadius:"50%",animation:"spin .8s linear infinite"}}/>
+  if(loading)return(
+    <div style={{minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",background:"var(--ivory)",gap:14}}>
+      <div style={{width:38,height:38,border:"3px solid var(--mint)",borderTopColor:"var(--green)",borderRadius:"50%",animation:"spin .8s linear infinite"}}/>
       <p style={{color:"var(--mist)",fontSize:14}}>{C.name}</p>
     </div>
   );
 
-  if(view==="admin-login") return <AdminLogin onSuccess={()=>setView("admin")} onBack={()=>setView("guest")}/>;
-  if(view==="admin") return <AdminDashboard bookings={bookings} onUpdate={handleUpdate} onDelete={handleDelete} onLogout={()=>setView("guest")}/>;
+  if(view==="admin-login")return <AdminLogin onOk={()=>setView("admin")} onBack={()=>setView("guest")}/>;
+  if(view==="admin")return <AdminDash bookings={bookings} onUpdate={handleUpdate} onDelete={handleDelete} onLogout={()=>setView("guest")}/>;
 
-  if(step==="home")    return <GuestHome    bookings={bookings} onBook={handleBook} onAdmin={()=>setView("admin-login")}/>;
-  if(step==="form")    return <BookingForm  room={room} initCI={initCI} initCO={initCO} bookings={bookings} onBack={reset} onNext={handleFormNext}/>;
-  if(step==="pay")     return <PaymentStep  data={formData} onBack={()=>setStep("form")} onConfirm={handleConfirm}/>;
-  if(step==="confirm") return <Confirmation booking={finalBk} onReset={reset}/>;
+  if(step==="home")   return <Home    bookings={bookings} onBook={handleBook} onAdmin={()=>setView("admin-login")}/>;
+  if(step==="form")   return <BookForm room={selRoom} initCI={initCI} initCO={initCO} bookings={bookings} onBack={reset} onNext={handleFormNext}/>;
+  if(step==="pay")    return <PayStep  data={formData} onBack={()=>setStep("form")} onConfirm={handleConfirm}/>;
+  if(step==="confirm")return <Confirmed bk={finalBk} onReset={reset}/>;
   return null;
 }
-
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
-</script>
-</body>
-</html>.card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden;}
-.panel{background:var(--white);border-radius:var(--radius-lg);border:1.5px solid var(--linen);padding:22px;}
-
-/* ── Room Card ─────────────────────────────────── */
-.room-card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden;transition:box-shadow var(--transition),transform var(--transition);border:1.5px solid var(--linen);}
-.room-card:hover:not(.booked){box-shadow:var(--shadow-lg);transform:translateY(-3px);}
-.room-card.booked{opacity:.55;cursor:not-allowed;}
-
-/* ── Status Badge ──────────────────────────────── */
-.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;}
-.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-
-/* ── Table rows ────────────────────────────────── */
-.info-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--linen);font-size:14px;}
-.info-row:last-child{border-bottom:none;}
-
-/* ── Payment option ────────────────────────────── */
-.pay-opt{border:1.5px solid var(--warm);border-radius:var(--radius-md);padding:14px 16px;cursor:pointer;transition:all var(--transition);display:flex;align-items:center;gap:14px;}
-.pay-opt:hover{border-color:var(--sage);background:#f7fbf9;}
-.pay-opt.on{border-color:var(--green);background:var(--mint-pale);box-shadow:0 0 0 3px rgba(45,106,79,.1);}
-.pay-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--warm);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--transition);}
-.pay-opt.on .pay-radio{border-color:var(--green);background:var(--green);}
-
-/* ── Step indicator ────────────────────────────── */
-.steps{display:flex;align-items:center;margin-bottom:28px;}
-.step-node{display:flex;align-items:center;gap:7px;flex-shrink:0;}
-.step-circle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .3s;}
-.step-connector{flex:1;height:2px;margin:0 8px;border-radius:2px;transition:background .3s;}
-
-/* ── Modal / Overlay ───────────────────────────── */
-.overlay{position:fixed;inset:0;background:rgba(10,8,5,.55);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:200;padding:16px;animation:fadeIn .2s ease;}
-.modal{background:var(--white);border-radius:20px;padding:32px;max-width:530px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:var(--shadow-xl);animation:slideUp .25s ease;}
-
-/* ── Toast ─────────────────────────────────────── */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--forest);color:#fff;padding:12px 18px;border-radius:var(--radius-md);font-size:14px;font-weight:500;z-index:999;box-shadow:var(--shadow-lg);animation:slideUp .3s ease;display:flex;align-items:center;gap:9px;max-width:320px;}
-
-/* ── Topbar ────────────────────────────────────── */
-.topbar{background:var(--forest);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;}
-
-/* ── Admin ─────────────────────────────────────── */
-.admin-tabs{display:flex;border-bottom:1.5px solid var(--warm);margin-bottom:20px;overflow-x:auto;gap:2px;}
-.atab{padding:10px 16px;font-size:13px;font-weight:600;color:var(--mist);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1.5px;transition:all .2s;white-space:nowrap;cursor:pointer;}
-.atab.on{color:var(--green);border-bottom-color:var(--green);}
-.booking-row{background:var(--white);border-radius:var(--radius-md);padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:box-shadow var(--transition),transform var(--transition);box-shadow:var(--shadow-sm);border-left:3px solid transparent;flex-wrap:wrap;}
-.booking-row:hover{box-shadow:var(--shadow-md);transform:translateY(-1px);}
-
-/* ── Room grid ─────────────────────────────────── */
-.room-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;}
-
-/* ── Hero ──────────────────────────────────────── */
-.hero{background:linear-gradient(150deg,#122d1f 0%,#1a3d2b 45%,#2d6a4f 100%);min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px 80px;text-align:center;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1' fill='white' fill-opacity='.04'/%3E%3C/svg%3E");}
-
-/* ── Search card ───────────────────────────────── */
-.search-card{background:var(--white);border-radius:var(--radius-xl);box-shadow:var(--shadow-xl);padding:24px 28px;max-width:780px;width:100%;margin:-44px auto 0;position:relative;z-index:10;}
-
-/* ── Filters ───────────────────────────────────── */
-.filter-pill{padding:6px 16px;border-radius:var(--radius-pill);border:1.5px solid var(--warm);font-size:13px;font-weight:600;cursor:pointer;transition:all var(--transition);background:var(--white);color:var(--mist);}
-.filter-pill.on{background:var(--forest);border-color:var(--forest);color:var(--white);}
-.filter-pill:hover:not(.on){background:var(--linen);border-color:var(--stone);}
-
-/* ── Animations ────────────────────────────────── */
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-.anim-up{animation:slideUp .4s cubic-bezier(.25,.8,.25,1) both;}
-
-/* ── Spinner ───────────────────────────────────── */
-.spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;}
-
-/* ── Sticky bottom CTA on mobile ──────────────── */
-.sticky-cta{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1.5px solid var(--linen);padding:14px 20px;display:none;z-index:50;box-shadow:0 -4px 20px rgba(0,0,0,.08);}
-
-/* ── Print ─────────────────────────────────────── */
-@media print{
-  .no-print{display:none!important;}
-  .topbar{position:relative;}
-  body{background:white;}
-  .card,.modal{box-shadow:none;border:1px solid #ddd;}
-}
-
-/* ── Responsive ────────────────────────────────── */
-@media(max-width:760px){
-  .room-grid{grid-template-columns:1fr;}
-  .hide-sm{display:none!important;}
-  .search-card{margin:0 16px;border-radius:var(--radius-lg);}
-  .steps .step-node:not(.active) .step-label{display:none;}
-  .sticky-cta{display:flex;gap:10px;}
-  .modal{padding:22px 18px;border-radius:16px;}
-  .hero{padding:50px 20px 64px;}
-}
-@media(max-width:480px){
-  .search-fields{flex-direction:column;}
-  .booking-grid{grid-template-columns:1fr!important;}
-}
-</style>
-</head>
-<body>
-<div id="root"></div>
-
-<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-<script type="text/babel" data-presets="react">
-const { useState, useEffect, useRef, useMemo, useCallback } = React;
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CONFIG  — edit this section for your property
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const C = {
-  name:        "La Fleur Transient Inn",
-  tagline:     "A peaceful retreat in the heart of the city",
-  address:     "123 Bloom Street, Quezon City",
-  phone:       "0917-123-4567",
-  fb:          "fb.com/lafleurinn",
-  viber:       "0917-123-4567",
-  checkIn:     "2:00 PM",
-  checkOut:    "12:00 PM",
-  dpRate:      0.5,           // 50% downpayment
-  adminPin:    "1234",        // ← CHANGE THIS before going live!
-  gcashName:   "Maria Santos",
-  gcashNum:    "0917-123-4567",
-  mayaNum:     "0917-123-4567",
-  bankName:    "BDO",
-  bankAcct:    "1234-5678-90",
-  bankHolder:  "Maria Santos",
-};
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ROOMS — edit name, price, capacity, desc
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const ROOMS = [
-  {id:"rm1",       name:"Room 1",       type:"Standard", price:500,  cap:2, beds:"1 Double Bed",        grad:"linear-gradient(135deg,#c8dfd2 0%,#8fbfa6 100%)", desc:"Quiet garden-facing room with natural ventilation and warm bedside lighting."},
-  {id:"rm2",       name:"Room 2",       type:"Standard", price:500,  cap:2, beds:"1 Double Bed",        grad:"linear-gradient(135deg,#c2d8cc 0%,#85b49a 100%)", desc:"Comfortable room with city glimpse and blackout curtains for restful sleep."},
-  {id:"rm3",       name:"Room 3",       type:"Standard", price:550,  cap:3, beds:"1 Dbl + 1 Single",   grad:"linear-gradient(135deg,#cce3d4 0%,#8dbba4 100%)", desc:"Slightly larger room with an extra single bed — ideal for a small group."},
-  {id:"rm4",       name:"Room 4",       type:"Standard", price:550,  cap:3, beds:"1 Dbl + 1 Single",   grad:"linear-gradient(135deg,#c6dece 0%,#88b69e 100%)", desc:"Peaceful courtyard-facing room with good cross-ventilation and ample closet space."},
-  {id:"rm5",       name:"Room 5",       type:"Standard", price:600,  cap:4, beds:"2 Double Beds",      grad:"linear-gradient(135deg,#bbd8c7 0%,#80b098 100%)", desc:"Our largest standard room with two beds and a private reading corner."},
-  {id:"attic",     name:"Attic Room",   type:"Loft",     price:750,  cap:4, beds:"2 Beds + Loft Area", grad:"linear-gradient(135deg,#e2d0bc 0%,#c4a47e 100%)", desc:"Charming loft with exposed wooden beams, skylights, and a cozy upper sleeping area."},
-  {id:"2nd-flr",   name:"2nd Floor",   type:"Suite",    price:1200, cap:6, beds:"Multiple Beds",      grad:"linear-gradient(135deg,#b8cde8 0%,#7aa8d4 100%)", desc:"Exclusive full-floor suite — spacious sala and multiple rooms, perfect for families."},
-  {id:"1st-flr",   name:"1st Floor",   type:"Suite",    price:1100, cap:6, beds:"Multiple Beds",      grad:"linear-gradient(135deg,#bccfe6 0%,#7ea6d0 100%)", desc:"Private first-floor suite with direct terrace access and a shared living area."},
-  {id:"magne",     name:"Magne",        type:"Themed",   price:800,  cap:2, beds:"1 King Bed",         grad:"linear-gradient(135deg,#d0bedd 0%,#a880c4 100%)", desc:"Deep jewel tones, moody ambient lighting, and romantic décor for a special occasion."},
-  {id:"sunflower", name:"Sunflower",    type:"Themed",   price:750,  cap:2, beds:"1 Queen Bed",        grad:"linear-gradient(135deg,#f0dfa0 0%,#e0c44e 100%)", desc:"Warm golden walls and floral accents fill the room with brightness and good cheer."},
-  {id:"cherry",    name:"Cherry",       type:"Themed",   price:750,  cap:2, beds:"1 Queen Bed",        grad:"linear-gradient(135deg,#f0c8c8 0%,#e08888 100%)", desc:"Soft blush palette with cherry blossom artwork and gentle romantic details."},
-  {id:"sampaguita",name:"Sampaguita",   type:"Themed",   price:700,  cap:2, beds:"1 Queen Bed",        grad:"linear-gradient(135deg,#ddeede 0%,#a4cca6 100%)", desc:"Crisp whites and fresh greens inspired by the Philippine national flower."},
-  {id:"lily",      name:"Lily",         type:"Themed",   price:700,  cap:2, beds:"1 Queen Bed",        grad:"linear-gradient(135deg,#e0d8f0 0%,#b8a8e4 100%)", desc:"Serene ivory and soft lavender with elegant lily motifs throughout the room."},
-  {id:"charrie",   name:"Charrie",      type:"Themed",   price:800,  cap:3, beds:"1 Dbl + 1 Single",  grad:"linear-gradient(135deg,#e8d4b8 0%,#c8a07a 100%)", desc:"Rustic earthy palette with wicker accents and a warm countryside-cottage feeling."},
-];
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   STATUS CONFIG
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const STATUS = {
-  pending_verification:{label:"Pending",    dot:"#e6a817", bg:"#fef8e7", fg:"#8a5f00", borderLeft:"#f0c040"},
-  approved:            {label:"Approved",   dot:"#2d9e5f", bg:"#e8f7ee", fg:"#1a5e36", borderLeft:"#2d9e5f"},
-  rejected:            {label:"Rejected",   dot:"#c0392b", bg:"#fde8e8", fg:"#8a1515", borderLeft:"#c0392b"},
-  checked_in:          {label:"Checked In", dot:"#1d4ed8", bg:"#dbeafe", fg:"#1a3a8a", borderLeft:"#1d4ed8"},
-  checked_out:         {label:"Completed",  dot:"#6b7280", bg:"#f3f4f6", fg:"#374151", borderLeft:"#a0a0a0"},
-};
-
-const TYPE_COLORS = {
-  Standard:{fg:"#1a5e36", bg:"#e8f7ee", border:"#a3d4b0"},
-  Loft:    {fg:"#7c4a00", bg:"#fef3e2", border:"#e4c07a"},
-  Suite:   {fg:"#1a3a8a", bg:"#dbeafe", border:"#93c5fd"},
-  Themed:  {fg:"#5c2d8a", bg:"#f5e8ff", border:"#c4a0e8"},
-};
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   UTILITIES
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const peso   = n => `₱${Number(n||0).toLocaleString("en-PH")}`;
-const today  = () => new Date().toISOString().split("T")[0];
-const fmtD   = d => d ? new Date(d).toLocaleDateString("en-PH",{weekday:"short",month:"long",day:"numeric",year:"numeric"}) : "—";
-const fmtS   = d => d ? new Date(d).toLocaleDateString("en-PH",{month:"short",day:"numeric",year:"numeric"}) : "—";
-const fmtDT  = d => d ? new Date(d).toLocaleString("en-PH",{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}) : "—";
-const nights = (a,b) => { if(!a||!b)return 0; const n=Math.round((new Date(b)-new Date(a))/86400000); return n>0?n:0; };
-const genRef = () => "LF"+Date.now().toString(36).toUpperCase().slice(-5)+Math.random().toString(36).slice(2,4).toUpperCase();
-const overlap= (a1,a2,b1,b2) => new Date(a1)<new Date(b2)&&new Date(a2)>new Date(b1);
-const ACTIVE = ["pending_verification","approved","checked_in"];
-
-function isAvail(roomId, ci, co, bookings, skip=null){
-  return !bookings.some(b => b.roomId===roomId && b.ref!==skip && ACTIVE.includes(b.status) && overlap(ci,co,b.checkIn,b.checkOut));
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   STORAGE — uses localStorage for deployed version
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const DB = {
-  load:()=>{ try{return JSON.parse(localStorage.getItem("lafleur_bookings")||"[]")}catch{return[]} },
-  save:(d)=>{ try{localStorage.setItem("lafleur_bookings",JSON.stringify(d));return true}catch{return false} },
-};
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SMALL COMPONENTS
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function Toast({msg, onHide}){
-  useEffect(()=>{ if(msg){const t=setTimeout(onHide,2800);return()=>clearTimeout(t);} },[msg]);
-  if(!msg)return null;
-  return <div className="toast no-print">✓ {msg}</div>;
-}
-
-function SBadge({status}){
-  const s=STATUS[status]||STATUS.pending_verification;
-  return <span className="badge" style={{background:s.bg,color:s.fg}}><span className="dot" style={{background:s.dot}}/>{s.label}</span>;
-}
-
-function TypeBadge({type}){
-  const t=TYPE_COLORS[type]||{fg:"#333",bg:"#eee",border:"#ccc"};
-  return <span className="badge" style={{background:t.bg,color:t.fg,border:`1px solid ${t.border}`,fontSize:11}}>{type}</span>;
-}
-
-function StepBar({step}){
-  const steps=["Browse","Details","Payment","Confirmed"];
-  return(
-    <div className="steps">
-      {steps.map((s,i)=>{
-        const done=i<step, active=i===step;
-        return(
-          <React.Fragment key={i}>
-            <div className={`step-node${active?" active":""}`}>
-              <div className="step-circle" style={{background:done?"var(--green)":active?"var(--forest)":"var(--warm)",color:done||active?"#fff":"var(--stone)"}}>
-                {done?"✓":i+1}
-              </div>
-              <span className="step-label" style={{fontSize:13,fontWeight:active?600:400,color:active?"var(--forest)":done?"var(--green)":"var(--stone)"}}>{s}</span>
-            </div>
-            {i<steps.length-1&&<div className="step-connector" style={{background:done?"var(--green)":"var(--warm)"}}/>}
-          </React.Fragment>
-        );
-      })}
-    </div>
-  );
-}
-
-function Topbar({onAdmin, showAdmin=true}){
-  return(
-    <div className="topbar no-print">
-      <div style={{display:"flex",alignItems:"center",gap:14}}>
-        <div style={{width:36,height:36,background:"rgba(255,255,255,.1)",borderRadius:10,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>🌿</div>
-        <div>
-          <div className="serif" style={{color:"#fff",fontSize:19,fontWeight:600,lineHeight:1.1}}>{C.name}</div>
-          <div style={{color:"rgba(255,255,255,.45)",fontSize:11,letterSpacing:"0.06em",marginTop:1}}>TRANSIENT INN</div>
-        </div>
-      </div>
-      {showAdmin&&onAdmin&&<button className="btn-white-ghost btn" onClick={onAdmin}>⚙ Admin</button>}
-    </div>
-  );
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ADMIN — LOGIN
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function AdminLogin({onSuccess, onBack}){
-  const [pin,setPin]=useState(""), [err,setErr]=useState(""), [shake,setShake]=useState(false);
-  const ref=useRef();
-  useEffect(()=>ref.current?.focus(),[]);
-  function attempt(){
-    if(pin===C.adminPin){onSuccess();}
-    else{setErr("Incorrect PIN — please try again.");setPin("");setShake(true);setTimeout(()=>setShake(false),500);}
-  }
-  return(
-    <div style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",background:"var(--ivory)",padding:20}}>
-      <div className="card anim-up" style={{width:360,padding:"44px 36px",textAlign:"center",borderRadius:20}}>
-        <div style={{width:58,height:58,background:"var(--forest)",borderRadius:14,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 20px",fontSize:26}}>🔐</div>
-        <h2 className="serif" style={{fontSize:30,fontWeight:600,marginBottom:6}}>Admin Access</h2>
-        <p style={{color:"var(--mist)",fontSize:14,marginBottom:28}}>{C.name}</p>
-        <div className="field" style={{marginBottom:14}}>
-          <label className="label-xs" style={{textAlign:"left"}}>PIN</label>
-          <input ref={ref} className={`inp ${err?"err":""}`} type="password" inputMode="numeric" maxLength={8}
-            placeholder="Enter your PIN" value={pin}
-            style={{textAlign:"center",fontSize:22,letterSpacing:10,transition:"transform .15s",transform:shake?"translateX(-5px)":"none"}}
-            onChange={e=>{setPin(e.target.value);setErr("");}} onKeyDown={e=>e.key==="Enter"&&attempt()}/>
-          {err&&<span className="err-msg">{err}</span>}
-        </div>
-        <button className="btn btn-forest btn-lg" style={{width:"100%",marginBottom:10}} onClick={attempt}>Sign In →</button>
-        <button className="btn btn-ghost btn-md" style={{width:"100%"}} onClick={onBack}>← Back to Booking</button>
-        <p style={{marginTop:20,fontSize:11,color:"var(--stone)"}}>Default PIN: <strong>1234</strong> — change <code>adminPin</code> in CONFIG</p>
-      </div>
-    </div>
-  );
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ADMIN — DASHBOARD
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function AdminDashboard({bookings, onUpdate, onDelete, onLogout}){
-  const [tab,setTab]=useState("all");
-  const [q,setQ]=useState("");
-  const [sel,setSel]=useState(null);
-  const [note,setNote]=useState("");
-  const [toast,setToast]=useState("");
-  const [copied,setCopied]=useState(false);
-
-  function toast$(m){setToast(m);}
-  function copy(txt){navigator.clipboard.writeText(txt).then(()=>{setCopied(true);setTimeout(()=>setCopied(false),2000);toast$("Copied to clipboard");})}
-
-  const cnt={
-    all:bookings.length,
-    pending_verification:bookings.filter(b=>b.status==="pending_verification").length,
-    approved:bookings.filter(b=>b.status==="approved").length,
-    checked_in:bookings.filter(b=>b.status==="checked_in").length,
-    checked_out:bookings.filter(b=>b.status==="checked_out").length,
-    rejected:bookings.filter(b=>b.status==="rejected").length,
-  };
-
-  const dpRev=bookings.filter(b=>["approved","checked_in","checked_out"].includes(b.status)).reduce((s,b)=>s+(b.downpayment||0),0);
-  const balanceIn=bookings.filter(b=>b.status==="checked_in").reduce((s,b)=>s+(b.total-b.downpayment||0),0);
-
-  const list=bookings.filter(b=>{
-    const tOk=tab==="all"||b.status===tab;
-    const sq=q.toLowerCase();
-    const sOk=!sq||b.ref.toLowerCase().includes(sq)||b.guestName.toLowerCase().includes(sq)||(b.roomName||"").toLowerCase().includes(sq)||(b.guestPhone||"").includes(sq);
-    return tOk&&sOk;
-  }).sort((a,b)=>{
-    if(a.status==="pending_verification"&&b.status!=="pending_verification")return -1;
-    if(b.status==="pending_verification"&&a.status!=="pending_verification")return 1;
-    return new Date(b.createdAt)-new Date(a.createdAt);
-  });
-
-  function act(ref,status,adminNote){
-    const b=bookings.find(x=>x.ref===ref);
-    onUpdate({...b,status,adminNote:adminNote||undefined,updatedAt:new Date().toISOString()});
-    setSel(null);setNote("");
-    const msgs={approved:"Booking approved ✓",rejected:"Booking rejected",checked_in:"Marked as checked in 🔑",checked_out:"Marked as checked out 🏁"};
-    toast$(msgs[status]||"Updated");
-  }
-
-  const buildConfirm=b=>`Hi ${b.guestName}! 🌿
-
-Your reservation at ${C.name} is CONFIRMED! ✅
-
-📋 Reference No.:  ${b.ref}
-🛏  Room:          ${b.roomName}
-📅 Check-In:      ${fmtD(b.checkIn)} at ${C.checkIn}
-📅 Check-Out:     ${fmtD(b.checkOut)} at ${C.checkOut}
-👥 Guests:        ${b.guestGuests} person(s)
-
-💳 Downpayment received: ${peso(b.downpayment)}
-💰 Balance on arrival:   ${peso(b.total-b.downpayment)}
-
-Please present this message or your reference number upon check-in.
-For questions, reach us at ${C.phone}.
-
-We look forward to welcoming you! 🏡
-— ${C.name}`;
-
-  const buildReject=b=>`Hi ${b.guestName},
-
-We're sorry to inform you that your booking request (Ref: ${b.ref}) could not be confirmed at this time.${b.adminNote?"\n\nReason: "+b.adminNote:""}
-
-Please contact us at ${C.phone} or message us on Facebook to rebook or for any assistance.
-
-We apologize for the inconvenience.
-— ${C.name}`;
-
-  const buildCheckin=b=>`Hi ${b.guestName}! 🔑
-
-Welcome to ${C.name}! We're happy to have you.
-
-📋 Ref:          ${b.ref}
-🛏  Room:        ${b.roomName}
-📅 Check-Out:   ${fmtD(b.checkOut)} at ${C.checkOut}
-💰 Balance Due: ${peso(b.total-b.downpayment)}
-
-Enjoy your stay — don't hesitate to reach out. 😊
-— ${C.name} · ${C.phone}`;
-
-  const TABS=[
-    {id:"all",label:`All (${cnt.all})`},
-    {id:"pending_verification",label:`⏳ Pending (${cnt.pending_verification})`},
-    {id:"approved",label:`✅ Approved (${cnt.approved})`},
-    {id:"checked_in",label:`🔑 In (${cnt.checked_in})`},
-    {id:"checked_out",label:`🏁 Out (${cnt.checked_out})`},
-    {id:"rejected",label:`✕ Rejected (${cnt.rejected})`},
-  ];
-
-  return(
-    <div style={{minHeight:"100vh",background:"#f0ece4"}}>
-      <Toast msg={toast} onHide={()=>setToast("")}/>
-      {/* Topbar */}
-      <div className="topbar">
-        <div style={{display:"flex",alignItems:"center",gap:14}}>
-          <span style={{fontSize:22}}>🏨</span>
-          <div>
-            <div className="serif" style={{color:"#fff",fontSize:18,fontWeight:600}}>{C.name}</div>
-            <div style={{color:"rgba(255,255,255,.4)",fontSize:11,letterSpacing:"0.06em"}}>ADMIN PANEL</div>
-          </div>
-        </div>
-        <div style={{display:"flex",gap:8,alignItems:"center"}}>
-          {cnt.pending_verification>0&&<span className="badge" style={{background:"#fef3c7",color:"#92400e",fontSize:12}}>⏳ {cnt.pending_verification} pending</span>}
-          <button className="btn btn-sm btn-ghost" style={{color:"rgba(255,255,255,.6)",borderColor:"rgba(255,255,255,.2)"}} onClick={onLogout}>Log Out</button>
-        </div>
-      </div>
-
-      <div style={{maxWidth:1100,margin:"0 auto",padding:"28px 18px"}}>
-        {/* Stats */}
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(165px,1fr))",gap:12,marginBottom:24}}>
-          {[
-            {label:"Total Bookings",val:cnt.all,icon:"📋",color:"var(--forest)"},
-            {label:"Pending Review",val:cnt.pending_verification,icon:"⏳",color:"#92400e"},
-            {label:"Approved / In",val:cnt.approved+cnt.checked_in,icon:"✅",color:"var(--green)"},
-            {label:"Downpayment In",val:peso(dpRev),icon:"💰",color:"var(--gold)"},
-            {label:"Balance Expected",val:peso(balanceIn),icon:"📊",color:"var(--sage)"},
-          ].map(s=>(
-            <div key={s.label} style={{background:"var(--white)",borderRadius:12,padding:"16px 18px",boxShadow:"var(--shadow-sm)"}}>
-              <div style={{fontSize:20,marginBottom:4}}>{s.icon}</div>
-              <div className="serif" style={{fontSize:24,fontWeight:600,color:s.color,lineHeight:1}}>{s.val}</div>
-              <div style={{fontSize:11,color:"var(--stone)",marginTop:4}}>{s.label}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Search */}
-        <input className="inp" style={{maxWidth:400,marginBottom:14,background:"var(--white)"}}
-          placeholder="🔍  Search name, reference, room, phone…" value={q} onChange={e=>setQ(e.target.value)}/>
-
-        {/* Tabs */}
-        <div className="admin-tabs">
-          {TABS.map(t=><button key={t.id} className={`atab ${tab===t.id?"on":""}`} onClick={()=>setTab(t.id)}>{t.label}</button>)}
-        </div>
-
-        {/* List */}
-        {list.length===0
-          ?<div style={{textAlign:"center",padding:"64px 0",color:"var(--mist)"}}>
-              <div style={{fontSize:40,marginBottom:12}}>📋</div>
-              <div style={{fontSize:15}}>No bookings {tab!=="all"?"with this status":""} yet.</div>
-            </div>
-          :<div style={{display:"flex",flexDirection:"column",gap:9}}>
-              {list.map(b=>{
-                const s=STATUS[b.status];
-                return(
-                  <div key={b.ref} className="booking-row" style={{borderLeftColor:s.borderLeft}}
-                    onClick={()=>{setSel(b);setNote(b.adminNote||"");}}>
-                    <div style={{flex:1,minWidth:160}}>
-                      <div style={{fontWeight:700,fontSize:15,marginBottom:2}}>{b.guestName}</div>
-                      <div style={{fontSize:12,color:"var(--mist)"}}>{b.roomName} · {fmtS(b.checkIn)} → {fmtS(b.checkOut)} · {nights(b.checkIn,b.checkOut)}N</div>
-                    </div>
-                    <div className="hide-sm" style={{minWidth:100}}>
-                      <div style={{fontSize:10,color:"var(--stone)"}}>REF</div>
-                      <div style={{fontWeight:700,fontSize:12,letterSpacing:"0.05em",color:"var(--forest)",fontFamily:"monospace"}}>{b.ref}</div>
-                    </div>
-                    <div className="hide-sm" style={{textAlign:"right",minWidth:90}}>
-                      <div style={{fontSize:10,color:"var(--stone)"}}>DOWNPAYMENT</div>
-                      <div style={{fontWeight:700,fontSize:14,color:"var(--green)"}}>{peso(b.downpayment)}</div>
-                    </div>
-                    <SBadge status={b.status}/>
-                    <div style={{fontSize:11,color:"var(--stone)",whiteSpace:"nowrap"}}>{fmtDT(b.createdAt)}</div>
-                    {/* Quick actions */}
-                    {b.status==="pending_verification"&&(
-                      <div style={{display:"flex",gap:6}} onClick={e=>e.stopPropagation()}>
-                        <button className="btn btn-sage btn-xs" onClick={()=>act(b.ref,"approved","")}>✅ Approve</button>
-                        <button className="btn btn-red btn-xs"  onClick={()=>act(b.ref,"rejected","")}>✕</button>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-        }
-      </div>
-
-      {/* ── BOOKING DETAIL MODAL ── */}
-      {sel&&(
-        <div className="overlay" onClick={()=>{setSel(null);setNote("");}}>
-          <div className="modal" onClick={e=>e.stopPropagation()}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:18}}>
-              <div>
-                <h3 className="serif" style={{fontSize:24,fontWeight:600,marginBottom:4}}>Booking Detail</h3>
-                <code style={{fontSize:13,fontWeight:700,color:"var(--forest)",letterSpacing:"0.06em"}}>{sel.ref}</code>
-              </div>
-              <button className="btn btn-ghost btn-sm" onClick={()=>{setSel(null);setNote("");}}>✕ Close</button>
-            </div>
-
-            <SBadge status={sel.status}/>
-            {sel.updatedAt&&<span style={{fontSize:11,color:"var(--mist)",marginLeft:10}}>Updated {fmtDT(sel.updatedAt)}</span>}
-
-            <div style={{background:"var(--ivory)",borderRadius:10,padding:"14px 16px",margin:"16px 0"}}>
-              {[
-                ["Room",sel.roomName],["Room Type",sel.roomType],
-                ["Guest",sel.guestName],["Phone",sel.guestPhone],["Email",sel.guestEmail||"—"],
-                ["Guests",`${sel.guestGuests} person(s)`],
-                ["Check-In",`${fmtD(sel.checkIn)} · ${C.checkIn}`],
-                ["Check-Out",`${fmtD(sel.checkOut)} · ${C.checkOut}`],
-                ["Duration",`${nights(sel.checkIn,sel.checkOut)} night(s)`],
-                ["Rate",`${peso(sel.roomRate)}/night`],
-                ["Total Amount",peso(sel.total)],
-                ["Downpayment Paid",peso(sel.downpayment)],
-                ["Balance on Arrival",peso(sel.total-sel.downpayment)],
-                ["Payment Via",(sel.payMethod||"").toUpperCase()],
-                ["Special Requests",sel.guestNotes||"None"],
-                ["Booked At",fmtDT(sel.createdAt)],
-              ].map(([k,v])=>(
-                <div key={k} className="info-row">
-                  <span style={{color:"var(--mist)",fontSize:13,flexShrink:0,marginRight:12}}>{k}</span>
-                  <span style={{fontWeight:500,fontSize:13,textAlign:"right",wordBreak:"break-word"}}>{v}</span>
-                </div>
-              ))}
-            </div>
-
-            {sel.adminNote&&(
-              <div style={{background:"var(--yellow-pale)",border:"1px solid var(--yellow-border)",borderRadius:8,padding:"11px 14px",marginBottom:14,fontSize:13,color:"#7a5c00"}}>
-                <strong>Admin Note:</strong> {sel.adminNote}
-              </div>
-            )}
-
-            {/* Copy message */}
-            {sel.status==="approved"&&(
-              <MsgBox label="📱 Confirmation Message" bg="var(--mint-pale)" border="var(--mint)" color="var(--green)" text={buildConfirm(sel)} onCopy={()=>copy(buildConfirm(sel))} copied={copied}/>
-            )}
-            {sel.status==="checked_in"&&(
-              <MsgBox label="📱 Check-In Welcome Message" bg="var(--blue-pale)" border="#93c5fd" color="var(--blue)" text={buildCheckin(sel)} onCopy={()=>copy(buildCheckin(sel))} copied={copied}/>
-            )}
-            {sel.status==="rejected"&&(
-              <MsgBox label="📱 Rejection Message" bg="var(--red-pale)" border="#fca5a5" color="var(--red)" text={buildReject(sel)} onCopy={()=>copy(buildReject(sel))} copied={copied}/>
-            )}
-
-            {/* Admin note input */}
-            {["pending_verification","approved"].includes(sel.status)&&(
-              <div className="field" style={{marginBottom:14}}>
-                <label className="label-xs">Admin Note <span style={{fontWeight:300,textTransform:"none",letterSpacing:0,color:"var(--stone)"}}>· optional, shown in rejection message</span></label>
-                <input className="inp" placeholder="e.g. GCash verified · screenshot ref #4821" value={note} onChange={e=>setNote(e.target.value)}/>
-              </div>
-            )}
-
-            {/* Actions */}
-            <div style={{display:"flex",gap:10,flexWrap:"wrap",marginTop:4}}>
-              {sel.status==="pending_verification"&&<>
-                <button className="btn btn-sage btn-md" onClick={()=>act(sel.ref,"approved",note)}>✅ Approve Booking</button>
-                <button className="btn btn-red btn-md" onClick={()=>act(sel.ref,"rejected",note)}>Reject</button>
-              </>}
-              {sel.status==="approved"&&<button className="btn btn-forest btn-md" onClick={()=>act(sel.ref,"checked_in",note)}>🔑 Mark Checked In</button>}
-              {sel.status==="checked_in"&&<button className="btn btn-ghost btn-md" onClick={()=>act(sel.ref,"checked_out",note)}>🏁 Mark Checked Out</button>}
-              {["rejected","checked_out"].includes(sel.status)&&(
-                <button className="btn btn-red btn-sm" onClick={()=>{onDelete(sel.ref);setSel(null);toast$("Record deleted");}}>🗑 Delete Record</button>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function MsgBox({label,bg,border,color,text,onCopy,copied}){
-  return(
-    <div style={{background:bg,border:`1.5px solid ${border}`,borderRadius:10,padding:"14px",marginBottom:14}}>
-      <div style={{fontSize:11,fontWeight:700,color,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:10}}>{label}</div>
-      <pre style={{fontFamily:"monospace",fontSize:12,lineHeight:1.85,whiteSpace:"pre-wrap",color:"var(--ink)",background:"var(--white)",borderRadius:7,padding:"12px 14px",border:`1px solid ${border}`,marginBottom:10,wordBreak:"break-word"}}>{text}</pre>
-      <button className="btn btn-sm" style={{background:color,color:"#fff",border:"none",borderRadius:6,padding:"7px 14px",cursor:"pointer",fontWeight:600,fontSize:13}} onClick={onCopy}>
-        {copied?"✓ Copied!":"📋 Copy Message"}
-      </button>
-    </div>
-  );
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GUEST — HOME
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function GuestHome({bookings, onBook, onAdmin}){
-  const [filter,setFilter]=useState("All");
-  const [ci,setCI]=useState(""), [co,setCO]=useState("");
-  const [searched,setSearched]=useState(false);
-  const [showTip,setShowTip]=useState(false);
-  const td=today();
-
-  const types=["All",...Array.from(new Set(ROOMS.map(r=>r.type)))];
-
-  const rooms=ROOMS.filter(r=>{
-    const typeOk=filter==="All"||r.type===filter;
-    const availOk=!searched||isAvail(r.id,ci,co,bookings);
-    return typeOk&&availOk;
-  });
-
-  const bookedSet=new Set(searched&&ci&&co?ROOMS.filter(r=>!isAvail(r.id,ci,co,bookings)).map(r=>r.id):[]);
-
-  function doSearch(){
-    if(!ci){alert("Please select a check-in date.");return;}
-    if(!co){alert("Please select a check-out date.");return;}
-    if(co<=ci){alert("Check-out must be after check-in.");return;}
-    setSearched(true);setShowTip(false);
-  }
-
-  const n=nights(ci,co);
-
-  return(
-    <div style={{minHeight:"100vh"}}>
-      {/* Hero */}
-      <div className="hero">
-        <button className="btn-white-ghost btn no-print" style={{position:"absolute",top:16,right:20}} onClick={onAdmin}>⚙ Admin</button>
-        <div style={{maxWidth:640,position:"relative",zIndex:1}}>
-          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.15)",borderRadius:99,padding:"5px 16px",marginBottom:20}}>
-            <span style={{color:"var(--mint)",fontSize:12,letterSpacing:"0.12em",fontWeight:600,textTransform:"uppercase"}}>Book Instantly · No Login</span>
-          </div>
-          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(32px,6vw,56px)",fontWeight:600,lineHeight:1.1,marginBottom:14}}>{C.name}</h1>
-          <p style={{color:"rgba(255,255,255,.6)",fontSize:"clamp(14px,2vw,16px)",lineHeight:1.7,marginBottom:8}}>{C.tagline}</p>
-          <p style={{color:"rgba(255,255,255,.5)",fontSize:13}}>📍 {C.address}</p>
-        </div>
-      </div>
-
-      {/* Search card (floats over hero) */}
-      <div style={{padding:"0 18px"}}>
-        <div className="search-card">
-          <div className="label-xs" style={{marginBottom:14}}>Check Availability</div>
-          <div className="search-fields" style={{display:"flex",gap:14,alignItems:"flex-end",flexWrap:"wrap"}}>
-            <div className="field" style={{flex:1,minWidth:140}}>
-              <label className="label-xs">Check-In Date</label>
-              <input type="date" className="inp" min={td} value={ci} onChange={e=>{setCI(e.target.value);setSearched(false);}}/>
-            </div>
-            <div className="field" style={{flex:1,minWidth:140}}>
-              <label className="label-xs">Check-Out Date</label>
-              <input type="date" className="inp" min={ci||td} value={co} onChange={e=>{setCO(e.target.value);setSearched(false);}}/>
-            </div>
-            <button className="btn btn-forest btn-md" style={{flexShrink:0,padding:"11px 24px"}} onClick={doSearch}>Search Rooms</button>
-            {searched&&<button className="btn btn-ghost btn-sm" onClick={()=>{setCI("");setCO("");setSearched(false);}}>Clear ✕</button>}
-          </div>
-          {searched&&ci&&co&&(
-            <div style={{marginTop:12,padding:"10px 14px",background:"var(--mint-pale)",borderRadius:8,fontSize:13,color:"var(--green)",fontWeight:500,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:6}}>
-              <span>✓ Showing <strong>{rooms.filter(r=>!bookedSet.has(r.id)).length}</strong> available room{rooms.filter(r=>!bookedSet.has(r.id)).length!==1?"s":""} for {fmtS(ci)} → {fmtS(co)} ({n} night{n!==1?"s":""})</span>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Room listing */}
-      <div style={{maxWidth:1140,margin:"0 auto",padding:"44px 18px 80px"}}>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20,flexWrap:"wrap",gap:12}}>
-          <div>
-            <h2 className="serif" style={{fontSize:30,fontWeight:600}}>Rooms &amp; Suites</h2>
-            <p style={{fontSize:13,color:"var(--mist)",marginTop:3}}>{ROOMS.length} room types · All with private bathroom</p>
-          </div>
-          <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-            {types.map(t=>(
-              <button key={t} className={`filter-pill ${filter===t?"on":""}`} onClick={()=>setFilter(t)}>{t}</button>
-            ))}
-          </div>
-        </div>
-
-        <div className="room-grid">
-          {rooms.map((r,idx)=>{
-            const booked=bookedSet.has(r.id);
-            const tc=TYPE_COLORS[r.type];
-            return(
-              <div key={r.id} className={`room-card ${booked?"booked":""}`} style={{animationDelay:`${idx*.04}s`}}
-                onClick={()=>!booked&&onBook(r,ci,co,searched)}>
-                {/* Visual header */}
-                <div style={{height:150,background:r.grad,position:"relative",display:"flex",flexDirection:"column",alignItems:"flex-start",justifyContent:"flex-end",padding:"12px 14px"}}>
-                  {booked&&<div style={{position:"absolute",top:10,right:10,background:"var(--red)",color:"#fff",fontSize:11,fontWeight:700,padding:"4px 10px",borderRadius:5,letterSpacing:"0.04em"}}>BOOKED</div>}
-                  <TypeBadge type={r.type}/>
-                </div>
-                {/* Info */}
-                <div style={{padding:"16px 18px"}}>
-                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:6}}>
-                    <h3 className="serif" style={{fontSize:20,fontWeight:600,color:"var(--forest)"}}>{r.name}</h3>
-                    <div style={{textAlign:"right",flexShrink:0,marginLeft:8}}>
-                      <span className="serif" style={{fontSize:21,fontWeight:700,color:"var(--green)"}}>{peso(r.price)}</span>
-                      <span style={{fontSize:12,color:"var(--mist)"}}>/night</span>
-                    </div>
-                  </div>
-                  <div style={{display:"flex",gap:12,fontSize:12,color:"var(--stone)",marginBottom:10}}>
-                    <span>👥 Max {r.cap}</span>
-                    <span>🛏 {r.beds}</span>
-                  </div>
-                  <p style={{fontSize:13,color:"var(--mist)",lineHeight:1.65,marginBottom:14}}>{r.desc}</p>
-                  {searched&&!booked&&n>0&&(
-                    <div style={{background:"var(--mint-pale)",borderRadius:7,padding:"7px 12px",fontSize:13,color:"var(--green)",fontWeight:600,marginBottom:12}}>
-                      {n}N total: {peso(r.price*n)} · DP: {peso(Math.ceil(r.price*n*C.dpRate))}
-                    </div>
-                  )}
-                  <button className="btn btn-forest btn-md" style={{width:"100%",fontSize:14}} disabled={booked}>
-                    {booked?"Not Available for Selected Dates":"Reserve This Room →"}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Info box */}
-        <div style={{marginTop:44,background:"var(--white)",borderRadius:var("--radius-lg"),border:"1.5px solid var(--linen)",padding:"24px 28px",display:"flex",gap:16,alignItems:"flex-start"}}>
-          <div style={{fontSize:26,flexShrink:0}}>ℹ️</div>
-          <div>
-            <div style={{fontWeight:700,fontSize:15,marginBottom:8,color:"var(--forest)"}}>How Booking Works</div>
-            <ol style={{fontSize:14,color:"var(--bark)",lineHeight:2,paddingLeft:18}}>
-              <li>Select your room and pick your check-in / check-out dates.</li>
-              <li>Fill in your name, phone number, and number of guests.</li>
-              <li>Pay <strong>50% downpayment</strong> via GCash, Maya, or bank transfer.</li>
-              <li>You receive a <strong>booking reference number</strong> instantly.</li>
-              <li>Send your payment screenshot + reference to <strong>{C.phone}</strong>.</li>
-              <li>We verify and send a <strong>confirmation message</strong> within 1–2 hours.</li>
-            </ol>
-          </div>
-        </div>
-
-        {/* Footer strip */}
-        <div style={{marginTop:28,display:"flex",gap:20,flexWrap:"wrap",fontSize:13,color:"var(--stone)",justifyContent:"center",textAlign:"center"}}>
-          <span>📍 {C.address}</span>
-          <span>📞 {C.phone}</span>
-          <span>📘 {C.fb}</span>
-          <span>🕐 Check-in {C.checkIn} · Check-out {C.checkOut}</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GUEST — BOOKING FORM
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function BookingForm({room, initCI, initCO, bookings, onBack, onNext}){
-  const td=today();
-  const [ci,setCI]=useState(initCI||""), [co,setCO]=useState(initCO||"");
-  const [name,setName]=useState(""), [phone,setPhone]=useState(""), [email,setEmail]=useState("");
-  const [guests,setGuests]=useState(1), [notes,setNotes]=useState("");
-  const [errs,setErrs]=useState({}), [availErr,setAvailErr]=useState("");
-  const n=nights(ci,co), total=room.price*n, dp=Math.ceil(total*C.dpRate);
-
-  function blur(k,val){
-    const e={...errs};
-    if(k==="name"&&!val.trim())e.name="Required";else if(k==="name")delete e.name;
-    if(k==="phone"&&!val.trim())e.phone="Required";
-    else if(k==="phone"&&!/^(\+63|0)\d{9,10}$/.test(val.replace(/[\s\-]/g,"")))e.phone="Enter a valid PH number (09XXXXXXXXX)";
-    else if(k==="phone")delete e.phone;
-    setErrs(e);
-  }
-
-  function validate(){
-    const e={};
-    if(!ci)e.ci="Required";
-    if(!co)e.co="Required"; else if(co<=ci)e.co="Must be after check-in";
-    if(!n||n<1)e.co="Select valid dates";
-    if(!name.trim())e.name="Required";
-    if(!phone.trim())e.phone="Required";
-    else if(!/^(\+63|0)\d{9,10}$/.test(phone.replace(/[\s\-]/g,"")))e.phone="Enter a valid PH number (09XXXXXXXXX)";
-    if(guests<1||guests>room.cap)e.guests=`Between 1 and ${room.cap}`;
-    setErrs(e);return Object.keys(e).length===0;
-  }
-
-  function submit(){
-    if(!validate())return;
-    if(!isAvail(room.id,ci,co,bookings)){
-      setAvailErr("Sorry, this room is no longer available for the selected dates. Please try different dates or choose another room.");
-      return;
-    }
-    setAvailErr("");
-    onNext({room,ci,co,n,total,dp,name,phone,email,guests,notes});
-  }
-
-  return(
-    <div style={{minHeight:"100vh",background:"var(--ivory)"}}>
-      <div className="topbar"><div style={{display:"flex",alignItems:"center",gap:12}}><button className="btn btn-sm btn-white-ghost" onClick={onBack}>← Back</button><span className="serif" style={{color:"#fff",fontSize:18}}>{C.name}</span></div></div>
-      <div style={{maxWidth:780,margin:"32px auto",padding:"0 18px 80px"}}>
-        <StepBar step={1}/>
-        {availErr&&<div style={{background:"var(--red-pale)",border:"1.5px solid #fca5a5",borderRadius:10,padding:"13px 16px",marginBottom:18,fontSize:14,color:"#8a1515",display:"flex",gap:10,alignItems:"flex-start"}}>⚠️ {availErr}</div>}
-        <div style={{display:"grid",gridTemplateColumns:"1fr 290px",gap:22,alignItems:"start"}} className="booking-grid">
-          {/* Left */}
-          <div style={{display:"flex",flexDirection:"column",gap:18}}>
-            <div>
-              <h2 className="serif" style={{fontSize:28,fontWeight:600,marginBottom:4}}>Your Booking</h2>
-              <p style={{color:"var(--mist)",fontSize:14}}>Reserving <strong style={{color:"var(--forest)"}}>{room.name}</strong></p>
-            </div>
-
-            {/* Dates */}
-            <div className="panel">
-              <div className="label-xs" style={{marginBottom:14}}>Stay Dates</div>
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
-                <div className="field">
-                  <label className="label-xs">Check-In *</label>
-                  <input type="date" className={`inp ${errs.ci?"err":""}`} min={td} value={ci} onChange={e=>{setCI(e.target.value);setErrs(p=>({...p,ci:""}));}}/>
-                  {errs.ci&&<span className="err-msg">{errs.ci}</span>}
-                </div>
-                <div className="field">
-                  <label className="label-xs">Check-Out *</label>
-                  <input type="date" className={`inp ${errs.co?"err":""}`} min={ci||td} value={co} onChange={e=>{setCO(e.target.value);setErrs(p=>({...p,co:""}));}}/>
-                  {errs.co&&<span className="err-msg">{errs.co}</span>}
-                </div>
-              </div>
-              {n>0&&(
-                <div style={{marginTop:12,background:"var(--mint-pale)",borderRadius:8,padding:"10px 14px",fontSize:14,color:"var(--green)",fontWeight:600}}>
-                  🌙 {n} night{n>1?"s":""} · Total {peso(total)} · Downpayment {peso(dp)}
-                </div>
-              )}
-            </div>
-
-            {/* Guest */}
-            <div className="panel">
-              <div className="label-xs" style={{marginBottom:14}}>Guest Information</div>
-              <div style={{display:"flex",flexDirection:"column",gap:14}}>
-                <div className="field">
-                  <label className="label-xs">Full Name *</label>
-                  <input className={`inp ${errs.name?"err":""}`} placeholder="e.g. Maria Dela Cruz" value={name} onChange={e=>setName(e.target.value)} onBlur={e=>blur("name",e.target.value)}/>
-                  {errs.name&&<span className="err-msg">{errs.name}</span>}
-                </div>
-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
-                  <div className="field">
-                    <label className="label-xs">Phone Number *</label>
-                    <input className={`inp ${errs.phone?"err":""}`} placeholder="09XXXXXXXXX" type="tel" value={phone} onChange={e=>setPhone(e.target.value)} onBlur={e=>blur("phone",e.target.value)}/>
-                    {errs.phone&&<span className="err-msg">{errs.phone}</span>}
-                  </div>
-                  <div className="field">
-                    <label className="label-xs">Email <span style={{fontWeight:300,textTransform:"none",letterSpacing:0,color:"var(--stone)"}}>· optional</span></label>
-                    <input className="inp" placeholder="for receipt" type="email" value={email} onChange={e=>setEmail(e.target.value)}/>
-                  </div>
-                </div>
-                <div className="field" style={{maxWidth:190}}>
-                  <label className="label-xs">Number of Guests *</label>
-                  <select className={`inp ${errs.guests?"err":""}`} value={guests} onChange={e=>setGuests(Number(e.target.value))}>
-                    {Array.from({length:room.cap},(_,i)=>i+1).map(x=><option key={x} value={x}>{x} {x===1?"Guest":"Guests"}</option>)}
-                  </select>
-                  {errs.guests&&<span className="err-msg">{errs.guests}</span>}
-                </div>
-                <div className="field">
-                  <label className="label-xs">Special Requests <span style={{fontWeight:300,textTransform:"none",letterSpacing:0,color:"var(--stone)"}}>· optional</span></label>
-                  <textarea className="inp" placeholder="Any special arrangements, requests, or notes for us…" value={notes} onChange={e=>setNotes(e.target.value)}/>
-                </div>
-              </div>
-            </div>
-
-            <button className="btn btn-forest btn-lg no-print" style={{width:"100%",justifyContent:"center"}} onClick={submit}>Continue to Payment →</button>
-          </div>
-
-          {/* Room summary card */}
-          <div style={{position:"sticky",top:76}}>
-            <div className="card">
-              <div style={{height:120,background:room.grad,display:"flex",alignItems:"flex-end",padding:"12px 14px"}}>
-                <TypeBadge type={room.type}/>
-              </div>
-              <div style={{padding:"18px"}}>
-                <h3 className="serif" style={{fontSize:20,fontWeight:600,marginBottom:4,color:"var(--forest)"}}>{room.name}</h3>
-                <div style={{fontSize:12,color:"var(--stone)",marginBottom:10}}>👥 Max {room.cap} · 🛏 {room.beds}</div>
-                <p style={{fontSize:12,color:"var(--mist)",lineHeight:1.65,marginBottom:14}}>{room.desc}</p>
-                <div style={{borderTop:"1px solid var(--linen)",paddingTop:12}}>
-                  {[
-                    ["Rate per night", peso(room.price)],
-                    n>0&&["Duration", `${n} night${n>1?"s":""}`],
-                    n>0&&["Total", peso(total)],
-                    n>0&&["Downpayment (50%)", <strong style={{color:"var(--green)"}}>{peso(dp)}</strong>],
-                    n>0&&["Balance on arrival", peso(total-dp)],
-                  ].filter(Boolean).map(([k,v])=>(
-                    <div key={k} className="info-row" style={{fontSize:13}}>
-                      <span style={{color:"var(--mist)"}}>{k}</span>
-                      <span style={{fontWeight:500}}>{v}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Mobile sticky CTA */}
-      <div className="sticky-cta no-print">
-        {n>0&&<div style={{flex:1,fontSize:13}}><div style={{fontWeight:700,color:"var(--green)"}}>{peso(dp)} downpayment</div><div style={{color:"var(--mist)",fontSize:12}}>{n}N · {peso(total)} total</div></div>}
-        <button className="btn btn-forest btn-md" onClick={submit}>Continue →</button>
-      </div>
-    </div>
-  );
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GUEST — PAYMENT
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function PaymentStep({data, onBack, onConfirm}){
-  const {room,ci,co,n,total,dp,name,phone,email,guests,notes}=data;
-  const [method,setMethod]=useState("gcash");
-  const [loading,setLoading]=useState(false);
-
-  function confirm(){setLoading(true);setTimeout(()=>onConfirm(method),1300);}
-
-  const METHODS=[
-    {id:"gcash",icon:"💙",label:"GCash",detail:`${C.gcashNum} · ${C.gcashName}`},
-    {id:"maya",icon:"💚",label:"Maya",detail:`${C.mayaNum}`},
-    {id:"bank",icon:"🏦",label:`Bank Transfer · ${C.bankName}`,detail:`${C.bankAcct} · ${C.bankHolder}`},
-  ];
-
-  return(
-    <div style={{minHeight:"100vh",background:"var(--ivory)"}}>
-      <div className="topbar"><div style={{display:"flex",alignItems:"center",gap:12}}><button className="btn btn-sm btn-white-ghost" onClick={onBack}>← Back</button><span className="serif" style={{color:"#fff",fontSize:18}}>{C.name}</span></div></div>
-      <div style={{maxWidth:580,margin:"32px auto",padding:"0 18px 80px"}}>
-        <StepBar step={2}/>
-        <h2 className="serif" style={{fontSize:28,fontWeight:600,marginBottom:6}}>Confirm &amp; Pay</h2>
-        <p style={{color:"var(--mist)",fontSize:14,marginBottom:24}}>Review your booking, then pay the 50% downpayment to secure your room. The remaining balance is collected upon arrival.</p>
-
-        {/* Summary */}
-        <div className="panel" style={{marginBottom:18}}>
-          <div className="label-xs" style={{marginBottom:14}}>Booking Summary</div>
-          {[
-            ["Room", room.name],["Guest Name", name],["Phone", phone],
-            [`${n} Night${n>1?"s":""} × ${peso(room.price)}`, peso(total)],
-            ["Check-In", `${fmtD(ci)} · ${C.checkIn}`],
-            ["Check-Out", `${fmtD(co)} · ${C.checkOut}`],
-          ].map(([k,v])=>(
-            <div key={k} className="info-row" style={{fontSize:14}}>
-              <span style={{color:"var(--mist)"}}>{k}</span><span style={{fontWeight:500}}>{v}</span>
-            </div>
-          ))}
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",paddingTop:14,marginTop:4,borderTop:"2px solid var(--linen)"}}>
-            <span style={{fontWeight:700,fontSize:15}}>Downpayment Due (50%)</span>
-            <span className="serif" style={{fontSize:30,fontWeight:700,color:"var(--green)"}}>{peso(dp)}</span>
-          </div>
-          <div style={{textAlign:"right",fontSize:12,color:"var(--stone)",marginTop:2}}>Balance on arrival: {peso(total-dp)}</div>
-        </div>
-
-        {/* Payment method */}
-        <div className="panel" style={{marginBottom:18}}>
-          <div className="label-xs" style={{marginBottom:14}}>Payment Method</div>
-          <div style={{display:"flex",flexDirection:"column",gap:10}}>
-            {METHODS.map(m=>(
-              <div key={m.id} className={`pay-opt ${method===m.id?"on":""}`} onClick={()=>setMethod(m.id)}>
-                <span style={{fontSize:24,lineHeight:1}}>{m.icon}</span>
-                <div style={{flex:1}}>
-                  <div style={{fontWeight:600,fontSize:14}}>{m.label}</div>
-                  <div style={{fontSize:12,color:"var(--mist)",marginTop:1}}>{m.detail}</div>
-                </div>
-                <div className="pay-radio">{method===m.id&&<span style={{color:"#fff",fontSize:10,fontWeight:900}}>✓</span>}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div style={{background:"var(--yellow-pale)",border:"1px solid var(--yellow-border)",borderRadius:10,padding:"14px 18px",marginBottom:22,fontSize:14,color:"var(--bark)",lineHeight:1.75}}>
-          📲 <strong>After confirming:</strong> Send your {METHODS.find(m=>m.id===method).label} payment screenshot to <strong>{C.phone}</strong> with your booking reference. We'll verify and send you a confirmation within <strong>1–2 hours</strong>.
-        </div>
-
-        <button className="btn btn-gold btn-lg" style={{width:"100%",justifyContent:"center"}} onClick={confirm} disabled={loading}>
-          {loading?<><span className="spinner"/>Processing…</>:`Confirm Booking & Pay ${peso(dp)}`}
-        </button>
-        <p style={{textAlign:"center",fontSize:12,color:"var(--stone)",marginTop:12}}>By confirming you agree to our cancellation and refund policy.</p>
-      </div>
-    </div>
-  );
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GUEST — CONFIRMATION
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function Confirmation({booking:b, onReset}){
-  const [copied,setCopied]=useState(false);
-  const bal=b.total-b.downpayment;
-  function copyRef(){navigator.clipboard.writeText(b.ref).then(()=>{setCopied(true);setTimeout(()=>setCopied(false),2000);});}
-  return(
-    <div style={{minHeight:"100vh",background:"var(--ivory)"}}>
-      <div className="topbar no-print"><span className="serif" style={{color:"#fff",fontSize:18,margin:"0 auto"}}>{C.name}</span></div>
-      <div style={{maxWidth:600,margin:"32px auto",padding:"0 18px 60px"}}>
-        <StepBar step={3}/>
-        <div className="card anim-up" style={{borderRadius:20,overflow:"hidden"}}>
-          {/* Header */}
-          <div style={{background:"var(--forest)",padding:"28px 24px",textAlign:"center"}}>
-            <div style={{width:66,height:66,background:"rgba(255,255,255,.12)",borderRadius:18,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 14px",fontSize:32}}>🎉</div>
-            <h2 className="serif" style={{color:"#fff",fontSize:28,fontWeight:600,marginBottom:6}}>Booking Received!</h2>
-            <p style={{color:"rgba(255,255,255,.6)",fontSize:14}}>Pending payment verification · 1–2 hour turnaround</p>
-          </div>
-
-          {/* Reference */}
-          <div style={{background:"var(--mint-pale)",padding:"20px 24px",textAlign:"center",borderBottom:"2px dashed var(--mint)"}}>
-            <div className="label-xs" style={{marginBottom:8}}>Your Booking Reference</div>
-            <div className="serif" style={{fontSize:34,fontWeight:700,color:"var(--forest)",letterSpacing:"0.1em",marginBottom:8}}>{b.ref}</div>
-            <button className="btn btn-outline btn-sm" onClick={copyRef} style={{fontSize:12}}>
-              {copied?"✓ Copied!":"📋 Copy Reference"}
-            </button>
-            <div style={{fontSize:12,color:"var(--mist)",marginTop:8}}>📸 Screenshot or note this reference number</div>
-          </div>
-
-          {/* Details */}
-          <div style={{padding:"22px 24px"}}>
-            <div className="label-xs" style={{marginBottom:14}}>Reservation Details</div>
-            {[
-              ["Room", b.roomName],
-              ["Guest", b.name],
-              ["Phone", b.phone],
-              ["Guests", `${b.guests} person(s)`],
-              ["Check-In", `${fmtD(b.checkIn)} · ${C.checkIn}`],
-              ["Check-Out", `${fmtD(b.checkOut)} · ${C.checkOut}`],
-              ["Duration", `${b.n} night${b.n>1?"s":""}`],
-              ["Total Amount", peso(b.total)],
-              ["Downpayment Paid", peso(b.downpayment)],
-              ["Balance on Arrival", peso(bal)],
-              ["Payment Via", (b.payMethod||"").toUpperCase()],
-              ["Status", "⏳ Pending Verification"],
-            ].map(([k,v])=>(
-              <div key={k} className="info-row">
-                <span style={{color:"var(--mist)",fontSize:13}}>{k}</span>
-                <span style={{fontWeight:500,fontSize:13,textAlign:"right"}}>{v}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Next step instruction */}
-          <div style={{background:"var(--blue-pale)",borderTop:"1.5px solid #93c5fd",padding:"16px 24px"}}>
-            <div style={{fontSize:14,color:"#1a3a8a",lineHeight:1.75}}>
-              📲 Send your <strong>{(b.payMethod||"").toUpperCase()}</strong> payment screenshot with reference <strong>{b.ref}</strong> to <strong>{C.phone}</strong> on Viber or Facebook. We'll send you a confirmation once verified.
-            </div>
-          </div>
-
-          {/* Actions */}
-          <div style={{padding:"18px 24px",display:"flex",gap:10,flexWrap:"wrap"}}>
-            <button className="btn btn-forest btn-md no-print" style={{flex:1}} onClick={onReset}>Book Another Room</button>
-            <button className="btn btn-ghost btn-md no-print" style={{flex:1}} onClick={()=>window.print()}>🖨 Print / Save</button>
-          </div>
-        </div>
-
-        <p style={{textAlign:"center",fontSize:12,color:"var(--stone)",marginTop:20,lineHeight:1.7}}>
-          {C.name} · {C.address}<br/>{C.phone} · {C.fb}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ROOT APP
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function App(){
-  const [view,setView]=useState("guest"); // guest | admin-login | admin
-  const [step,setStep]=useState("home"); // home | form | pay | confirm
-  const [bookings,setBookings]=useState([]);
-  const [loading,setLoading]=useState(true);
-
-  // booking session
-  const [room,setRoom]=useState(null);
-  const [initCI,setInitCI]=useState(""), [initCO,setInitCO]=useState("");
-  const [formData,setFormData]=useState(null);
-  const [finalBk,setFinalBk]=useState(null);
-
-  useEffect(()=>{ setBookings(DB.load()); setLoading(false); },[]);
-
-  function persist(list){ setBookings(list); DB.save(list); }
-  function handleUpdate(upd){ persist(bookings.map(b=>b.ref===upd.ref?upd:b)); }
-  function handleDelete(ref){ persist(bookings.filter(b=>b.ref!==ref)); }
-
-  function handleBook(r,ci,co,datesSet){
-    setRoom(r);
-    setInitCI(datesSet&&ci?ci:"");
-    setInitCO(datesSet&&co?co:"");
-    setStep("form");
-    window.scrollTo(0,0);
-  }
-
-  function handleFormNext(data){ setFormData(data); setStep("pay"); window.scrollTo(0,0); }
-
-  function handleConfirm(method){
-    const ref=genRef();
-    const bk={
-      ref, roomId:formData.room.id, roomName:formData.room.name, roomType:formData.room.type,
-      roomRate:formData.room.price, checkIn:formData.ci, checkOut:formData.co, n:formData.n,
-      total:formData.total, downpayment:formData.dp, payMethod:method,
-      name:formData.name, phone:formData.phone, email:formData.email||"",
-      guests:formData.guests, guestNotes:formData.notes||"",
-      // flattened guest fields for admin panel
-      guestName:formData.name, guestPhone:formData.phone, guestEmail:formData.email||"",
-      guestGuests:formData.guests,
-      status:"pending_verification", createdAt:new Date().toISOString(),
-    };
-    const updated=[...bookings,bk];
-    persist(updated);
-    setFinalBk(bk);
-    setStep("confirm");
-    window.scrollTo(0,0);
-  }
-
-  function reset(){ setStep("home"); setRoom(null); setFormData(null); setFinalBk(null); setInitCI(""); setInitCO(""); window.scrollTo(0,0); }
-
-  if(loading) return(
-    <div style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",background:"var(--ivory)",flexDirection:"column",gap:14}}>
-      <div style={{width:40,height:40,border:"3px solid var(--mint)",borderTopColor:"var(--green)",borderRadius:"50%",animation:"spin .8s linear infinite"}}/>
-      <p style={{color:"var(--mist)",fontSize:14}}>{C.name}</p>
-    </div>
-  );
-
-  if(view==="admin-login") return <AdminLogin onSuccess={()=>setView("admin")} onBack={()=>setView("guest")}/>;
-  if(view==="admin") return <AdminDashboard bookings={bookings} onUpdate={handleUpdate} onDelete={handleDelete} onLogout={()=>setView("guest")}/>;
-
-  if(step==="home")    return <GuestHome    bookings={bookings} onBook={handleBook} onAdmin={()=>setView("admin-login")}/>;
-  if(step==="form")    return <BookingForm  room={room} initCI={initCI} initCO={initCO} bookings={bookings} onBack={reset} onNext={handleFormNext}/>;
-  if(step==="pay")     return <PaymentStep  data={formData} onBack={()=>setStep("form")} onConfirm={handleConfirm}/>;
-  if(step==="confirm") return <Confirmation booking={finalBk} onReset={reset}/>;
-  return null;
-}
-
-/* Inject CSS var helper */
-function var_(v){ return `var(${v})`; }
-window.var=var_;
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
